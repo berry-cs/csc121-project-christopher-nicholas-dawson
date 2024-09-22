@@ -14,19 +14,19 @@ public class DoodleWorld implements IWorld {
 		this.jumper = jumper;
 		this.platforms = platforms;
 		this.star = star;
-		this.obsticals = obsticals;
+		this.obstacles = obsticals;
 		this.score = score;
 	}
 
 	@Override
 	public String toString() {
 		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obsticals="
-				+ obsticals + ", score=" + score + "]";
+				+ obstacles + ", score=" + score + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(jumper, obsticals, platforms, score, star);
+		return Objects.hash(jumper, obstacles, platforms, score, star);
 	}
 
 	@Override
@@ -38,7 +38,7 @@ public class DoodleWorld implements IWorld {
 		if (getClass() != obj.getClass())
 			return false;
 		DoodleWorld other = (DoodleWorld) obj;
-		return Objects.equals(jumper, other.jumper) && Objects.equals(obsticals, other.obsticals)
+		return Objects.equals(jumper, other.jumper) && Objects.equals(obstacles, other.obstacles)
 				&& Objects.equals(platforms, other.platforms) && Objects.equals(score, other.score)
 				&& Objects.equals(star, other.star);
 	}
