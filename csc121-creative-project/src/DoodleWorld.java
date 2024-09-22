@@ -19,6 +19,12 @@ public class DoodleWorld implements IWorld {
 	}
 
 	@Override
+	public String toString() {
+		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obsticals="
+				+ obsticals + ", score=" + score + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(jumper, obsticals, platforms, score, star);
 	}
@@ -37,35 +43,6 @@ public class DoodleWorld implements IWorld {
 				&& Objects.equals(star, other.star);
 	}
     
-		
-		
-<<<<<<< Updated upstream
-=======
-		public DoodleWorld(int x, int y) {
-			super();
-			this.x = x;
-			this.y = y;
-		}
-		
-		
-
-		@Override
-		public int hashCode() {
-			return Objects.hash(x, y);
-		}
-
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			DoodleWorld other = (DoodleWorld) obj;
-			return x == other.x && y == other.y;
-		}
->>>>>>> Stashed changes
 
 }
 
