@@ -39,6 +39,33 @@ public class DoodleWorld implements IWorld {
     
 		
 		
+<<<<<<< Updated upstream
+=======
+		public DoodleWorld(int x, int y) {
+			super();
+			this.x = x;
+			this.y = y;
+		}
+		
+		
+
+		@Override
+		public int hashCode() {
+			return Objects.hash(x, y);
+		}
+
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			DoodleWorld other = (DoodleWorld) obj;
+			return x == other.x && y == other.y;
+		}
+>>>>>>> Stashed changes
 
 }
 
