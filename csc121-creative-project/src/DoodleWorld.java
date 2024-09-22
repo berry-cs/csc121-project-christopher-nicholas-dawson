@@ -19,6 +19,12 @@ public class DoodleWorld implements IWorld {
 	}
 
 	@Override
+	public String toString() {
+		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obsticals="
+				+ obsticals + ", score=" + score + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		return Objects.hash(jumper, obsticals, platforms, score, star);
 	}
@@ -37,8 +43,6 @@ public class DoodleWorld implements IWorld {
 				&& Objects.equals(star, other.star);
 	}
     
-		
-		
 
 
 }
