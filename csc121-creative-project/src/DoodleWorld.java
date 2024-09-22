@@ -6,10 +6,10 @@ public class DoodleWorld implements IWorld {
 	Jumper jumper;
     IPlatform platforms;
     Star star;
-    IObstical obsticals;
+    IObstacle obstacles;
     Score score;
     
-	public DoodleWorld(Jumper jumper, IPlatform platforms, Star star, IObstical obsticals, Score score) {
+	public DoodleWorld(Jumper jumper, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
 		super();
 		this.jumper = jumper;
 		this.platforms = platforms;
