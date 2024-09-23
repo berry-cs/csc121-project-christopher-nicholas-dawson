@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 import processing.core.PApplet;
+import processing.event.KeyEvent;
 
 /** represent the state of our doodle jump animation */
 public class DoodleWorld implements IWorld {
@@ -52,6 +53,19 @@ public class DoodleWorld implements IWorld {
 		this.platform.draw(c);
 		return c;
 	}
-
+	
+	
+	public IWorld update() {
+		
+		return new DoodleWorld( this.jumper.move(),  this.platform );
+		
+	}
+	 public DoodleWorld keyPressed(KeyEvent kev) {
+		 if (kev.getKey() == ' ') {  // space
+	            return new DoodleWorld(this.jumper.boost(), this.platform);
+	        } else {
+	            return this;
+	 }
+	 }
 }
 
