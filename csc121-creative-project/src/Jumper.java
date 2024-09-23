@@ -13,7 +13,7 @@ public class Jumper {
 	}
 
 	 public Jumper Jump(){
-		 Posn newvel = this.vel.translate(new Posn(0,10));
+		 Posn newvel = this.vel.translate(new Posn(0,10)); // we need a gravity function that decreases the velocity except for when collisions occur
 		 Posn newloc = this.loc.translate(newvel); //how to alter the velocity is the question
 		 return new Jumper(newloc, this.vel);
 	 }
