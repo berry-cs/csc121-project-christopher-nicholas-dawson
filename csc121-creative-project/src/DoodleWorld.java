@@ -1,5 +1,7 @@
 import java.util.Objects;
 
+import processing.core.PApplet;
+
 /** represent the state of our doodle jump animation */
 public class DoodleWorld implements IWorld {
 	
@@ -9,13 +11,13 @@ public class DoodleWorld implements IWorld {
     IObstacle obstacles;
     Score score;
     
-	public DoodleWorld(Jumper jumper, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
+	public DoodleWorld(Jumper jumper)   {   //, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
 		super();
 		this.jumper = jumper;
-		this.platforms = platforms;
+		/*this.platforms = platforms;
 		this.star = star;
 		this.obstacles = obsticals;
-		this.score = score;
+		this.score = score;*/
 	}
 
 	@Override
@@ -43,6 +45,11 @@ public class DoodleWorld implements IWorld {
 				&& Objects.equals(star, other.star);
 	}
     
+    public PApplet draw(PApplet c) {
+        c.background(255);  // clear the screen each time (color white)
+        this.jumper.draw(c);
+        return c;
+    }
 
 
 }
