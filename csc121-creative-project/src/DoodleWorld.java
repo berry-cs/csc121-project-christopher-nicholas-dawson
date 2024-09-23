@@ -4,31 +4,32 @@ import processing.core.PApplet;
 
 /** represent the state of our doodle jump animation */
 public class DoodleWorld implements IWorld {
-	
+
 	Jumper jumper;
-    Platform platforms;
-    Star star;
-    Obstacle obstacles;
-    Score score;
-    
-	public DoodleWorld(Jumper jumper)   {   //, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
+	Platform platform;
+	Star star;
+	Obstacle obstacles;
+	Score score;
+
+	public DoodleWorld(Jumper jumper, Platform platform)   {   //, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
 		super();
 		this.jumper = jumper;
-		/*this.platforms = platforms;
+		this.platform = platform;
+		/*
 		this.star = star;
-		this.obstacles = obsticals;
+		this.obstacles = obstacle;
 		this.score = score;*/
 	}
 
 	@Override
 	public String toString() {
-		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obsticals="
+		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platform + ", star=" + star + ", obsticals="
 				+ obstacles + ", score=" + score + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(jumper, obstacles, platforms, score, star);
+		return Objects.hash(jumper, obstacles, platform, score, star);
 	}
 
 	@Override
@@ -41,15 +42,16 @@ public class DoodleWorld implements IWorld {
 			return false;
 		DoodleWorld other = (DoodleWorld) obj;
 		return Objects.equals(jumper, other.jumper) && Objects.equals(obstacles, other.obstacles)
-				&& Objects.equals(platforms, other.platforms) && Objects.equals(score, other.score)
+				&& Objects.equals(platform, other.platform) && Objects.equals(score, other.score)
 				&& Objects.equals(star, other.star);
 	}
-    
-    public PApplet draw(PApplet c) {
-        c.background(255);  // clear the screen each time (color white)
-        this.jumper.draw(c);
-        return c;
-    }
+
+	public PApplet draw(PApplet c) {
+		c.background(255);  // clear the screen each time (color white)
+		this.jumper.draw(c);
+		this.platform.draw(c);
+		return c;
+	}
 
 
 }
