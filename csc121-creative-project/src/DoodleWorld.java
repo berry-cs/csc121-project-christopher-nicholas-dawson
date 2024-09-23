@@ -6,9 +6,9 @@ import processing.core.PApplet;
 public class DoodleWorld implements IWorld {
 	
 	Jumper jumper;
-    IPlatform platforms;
+    Platform platforms;
     Star star;
-    IObstacle obstacles;
+    Obstacle obstacles;
     Score score;
     
 	public DoodleWorld(Jumper jumper)   {   //, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
