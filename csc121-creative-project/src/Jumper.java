@@ -4,15 +4,26 @@ import processing.core.PApplet;
 
 public class Jumper {
 	Posn loc;
+	Posn vel; //velocity
 
-	Jumper(Posn jumper) {
+	 Jumper(Posn loc, Posn vel) {
 		super();
-		loc = jumper;
+		this.loc = loc;
+		this.vel = vel;
 	}
+
+	public PApplet draw(PApplet c) {
+	        c.imageMode(PApplet.CENTER);
+	        c.pushMatrix();
+	        c.scale(.25f);
+	        c.image(c.loadImage("Jumper.png"), this.loc.getX(), this.loc.getY());
+	        c.popMatrix();
+	        return c;
+	    }
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(loc);
+		return Objects.hash(loc, vel);
 	}
 
 	@Override
@@ -24,16 +35,7 @@ public class Jumper {
 		if (getClass() != obj.getClass())
 			return false;
 		Jumper other = (Jumper) obj;
-		return Objects.equals(loc, other.loc);
+		return Objects.equals(loc, other.loc) && Objects.equals(vel, other.vel);
 	}
-	
-	 public PApplet draw(PApplet c) {
-	        c.imageMode(PApplet.CENTER);
-	        c.pushMatrix();
-	        c.scale(.25f);
-	        c.image(c.loadImage("Jumper.png"), this.loc.getX(), this.loc.getY());
-	        c.popMatrix();
-	        return c;
-	    }
 	
 }
