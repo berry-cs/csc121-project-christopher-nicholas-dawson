@@ -12,6 +12,12 @@ public class Jumper {
 		this.vel = vel;
 	}
 
+	 public Jumper Jump(){
+		 Posn newloc = this.loc.translate(this.vel);
+		 return new Jumper(newloc, this.vel);
+	 }
+	
+	 
 	public PApplet draw(PApplet c) {
 	        c.imageMode(PApplet.CENTER);
 	        c.pushMatrix();
