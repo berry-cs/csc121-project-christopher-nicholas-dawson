@@ -1,5 +1,7 @@
 import java.util.Objects;
 
+import processing.core.PApplet;
+
 /** Represents a still platform*/
 public class Platform {
 
@@ -7,7 +9,7 @@ public class Platform {
 	int width;
 	int height;
 	String color;
-	
+
 	public Platform(Posn posn, int width, int height, String color) {
 		super();
 		this.posn = posn;
@@ -15,6 +17,18 @@ public class Platform {
 		this.height = height;
 		this.color = color;
 	}
+
+	/** produce a visual platform */ 
+	public PApplet draw(PApplet c) {
+
+		c.fill(0, 0, 255);   // solid blue
+		c.rect(120, 80, 220, 10, 28);
+
+		return c; 
+	}
+
+
+
 
 	@Override
 	public String toString() {
@@ -38,6 +52,6 @@ public class Platform {
 		return Objects.equals(color, other.color) && height == other.height && Objects.equals(posn, other.posn)
 				&& width == other.width;
 	}
-	
-	
+
+
 }
