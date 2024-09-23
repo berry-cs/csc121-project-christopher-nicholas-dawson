@@ -2,18 +2,15 @@ import java.util.Objects;
 
 public class Jumper {
 	Posn Jumper;
-	
-	int Jump_factor = 10;
-	
-	Jumper(Posn jumper, int jump_factor) {
+
+	Jumper(Posn jumper) {
 		super();
 		Jumper = jumper;
-		Jump_factor = jump_factor;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(Jump_factor, Jumper);
+		return Objects.hash(Jumper);
 	}
 
 	@Override
@@ -25,11 +22,9 @@ public class Jumper {
 		if (getClass() != obj.getClass())
 			return false;
 		Jumper other = (Jumper) obj;
-		return Jump_factor == other.Jump_factor && Objects.equals(Jumper, other.Jumper);
+		return Objects.equals(Jumper, other.Jumper);
 	}
+	
 
-	
-	
-	
 	
 }
