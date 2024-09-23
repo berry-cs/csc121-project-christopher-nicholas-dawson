@@ -15,8 +15,10 @@ public class Jumper {
 	public PApplet draw(PApplet c) {
 	        c.imageMode(PApplet.CENTER);
 	        c.pushMatrix();
-	        c.scale(.25f);
-	        c.image(c.loadImage("Jumper.png"), this.loc.getX(), this.loc.getY());
+	        //c.scale(.25f);
+	       // c.image(c.loadImage("Jumper.png"), this.loc.getX(), this.loc.getY());
+	        c.fill(0, 0,255);
+	        c.circle(this.loc.getX(), this.loc.getY(), 10);
 	        c.popMatrix();
 	        return c;
 	    }
