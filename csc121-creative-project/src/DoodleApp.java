@@ -12,7 +12,7 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
     }
     
     public void setup() {
-        w = new DoodleWorld(new Jumper( new Posn(250,50)));   	//<----- 2. create your initial world object
+        w = new DoodleWorld(new Jumper( new Posn(250,50), new Posn(0,0)));   	//<----- 2. create your initial world object
     }
     
     public void draw() {
