@@ -53,6 +53,5 @@ public class DoodleWorld implements IWorld {
 		return c;
 	}
 
-
 }
 
