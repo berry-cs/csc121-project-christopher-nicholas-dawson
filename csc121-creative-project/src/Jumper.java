@@ -13,7 +13,7 @@ public class Jumper {
 	}
 
 	 public Jumper Jump(){
-		 Posn newloc = this.loc.translate(this.vel);
+		 Posn newloc = this.loc.translate(this.vel); //how to alter the velocity is the question
 		 return new Jumper(newloc, this.vel);
 	 }
 	
