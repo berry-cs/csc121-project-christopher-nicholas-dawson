@@ -12,7 +12,7 @@ public class DoodleWorld implements IWorld {
 	Obstacle obstacles;
 	Score score;
 
-	public DoodleWorld(Jumper jumper, Platform platform)   {   //, IPlatform platforms, Star star, IObstacle obsticals, Score score) {
+	public DoodleWorld(Jumper jumper, Platform platform)   {   //, Platform platform, Star star, IObstacle obsticals, Score score) {
 		super();
 		this.jumper = jumper;
 		this.platform = platform;
@@ -53,13 +53,14 @@ public class DoodleWorld implements IWorld {
 		this.platform.draw(c);
 		return c;
 	}
-	
-	
+
+
 	public IWorld update() {
-		
+
 		return new DoodleWorld( this.jumper.move(),  this.platform );
-		
+
 	}
+<<<<<<< HEAD
 	 public DoodleWorld keyPressed(KeyEvent kev) {
 		 if (kev.getKey() == ' ') {  // space
 	            return new DoodleWorld(this.jumper.boost(), this.platform);
@@ -68,6 +69,20 @@ public class DoodleWorld implements IWorld {
 	 }
 	 }
 	 
+=======
+	// Method to handle key presses for moving the jumper
+	public DoodleWorld keyPressed(KeyEvent kev) {
+        if (kev.getKeyCode() == PApplet.LEFT) {
+            // Move jumper to the left by translating its position by -10 units in x
+            return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platform);
+        } else if (kev.getKeyCode() == PApplet.RIGHT) {
+            // Move jumper to the right by translating its position by 10 units in x
+            return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platform);
+        } else {
+            return this;  // No change if other keys are pressed
+        }
+    }
+>>>>>>> 374290b5524b4fc7f865bdab72d8ad8f57fafa29
 }
 
 
