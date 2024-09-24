@@ -53,19 +53,21 @@ public class DoodleWorld implements IWorld {
 		this.platform.draw(c);
 		return c;
 	}
-	
-	
+
+
 	public IWorld update() {
-		
+
 		return new DoodleWorld( this.jumper.move(),  this.platform );
-		
+
 	}
-	 public DoodleWorld keyPressed(KeyEvent kev) {
-		 if (kev.getKey() == ' ') {  // space
-	            return new DoodleWorld(this.jumper.boost(), this.platform);
-	        } else {
-	            return this;
-	 }
-	 }
+	public DoodleWorld keyPressed(KeyEvent kev) {
+		if (kev.getKeyCode() == PApplet.LEFT) {
+			return new DoodleWorld((this.jumper.translate(new Posn(-10, 0)), this.vel), this.platform);
+		} else  if (kev.getKeyCode() == PApplet.RIGHT) {
+			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.vel), this.platform;
+		} else 
+		{ return this;
+		}
+	}
 }
 
