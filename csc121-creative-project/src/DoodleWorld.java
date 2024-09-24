@@ -75,7 +75,13 @@ public class DoodleWorld implements IWorld {
 	            return this;
 	            }
 	 }
-	 
+	 public DoodleWorld keyReleased(KeyEvent kev) {
+		 if(kev.getKey() == ' ') {
+			 return new DoodleWorld(this.jumper.translate(this.jumper.vel.translate(new Posn(0, (Jumper.GRAVITY + 5)))), this.platform);
+		 }else {
+			 return this;
+		 }
+	 }
 } 
 
 
