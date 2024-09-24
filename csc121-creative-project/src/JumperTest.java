@@ -24,8 +24,8 @@ class JumperTest {
 	
 	@Test
 	void boostTest() {
-		assertEquals( new Jumper(new Posn(50,50), new Posn(0,-9))  , j1.boost() );     
-		assertEquals( new Jumper(new Posn(50, 80), new Posn(0, 1))  , j2.boost() );
+		assertEquals( new Jumper(new Posn(50,50), new Posn(0,-4))  , j1.boost() );     
+		assertEquals( new Jumper(new Posn(50, 80), new Posn(0, 6))  , j2.boost() );
 		// i.e. boost() changes the velocity only  (adds 10 to the y part)
 	}
 	
