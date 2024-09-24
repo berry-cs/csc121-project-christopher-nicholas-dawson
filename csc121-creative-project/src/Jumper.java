@@ -60,4 +60,19 @@ public class Jumper {
 		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 5))));
 	}
 	
+	  // Method to translate (move) the jumper's position by a certain offset
+    public Jumper translate(Posn offset) {
+        // Update the position by adding the offset values
+        return new Jumper(new Posn(this.loc.x + offset.x, this.loc.y + offset.y), this.vel);
+    }
+
+    // Getter for position
+    public Posn getPosition() {
+        return this.loc;
+    }
+
+	 
+
+
+	
 }
