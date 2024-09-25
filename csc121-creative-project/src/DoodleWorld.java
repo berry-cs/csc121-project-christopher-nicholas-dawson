@@ -60,17 +60,29 @@ public class DoodleWorld implements IWorld {
 		return new DoodleWorld( this.jumper.move(),  this.platform );
 
 	}
-	// Method to handle key presses for moving the jumper
-	public DoodleWorld keyPressed(KeyEvent kev) {
-        if (kev.getKeyCode() == PApplet.LEFT) {
-            // Move jumper to the left by translating its position by -10 units in x
-            return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platform);
-        } else if (kev.getKeyCode() == PApplet.RIGHT) {
-            // Move jumper to the right by translating its position by 10 units in x
-            return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platform);
-        } else {
-            return this;  // No change if other keys are pressed
-        }
-    }
-}
+//<<<<<<< HEAD
+	 public DoodleWorld keyPressed(KeyEvent kev) {
+		 if (kev.getKey() == ' ') {  // space
+	            return new DoodleWorld(this.jumper.boost(), this.platform);
+		 
+		   }else if (kev.getKeyCode() == PApplet.LEFT) {
+	                // Move jumper to the left by translating its position by -10 units in x
+	                return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platform);
+	            } else if (kev.getKeyCode() == PApplet.RIGHT) {
+	                // Move jumper to the right by translating its position by 10 units in x
+	                return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platform);
+	            } else {
+	            return this;
+	            }
+	 }
+	 public DoodleWorld keyReleased(KeyEvent kev) {
+		 if(kev.getKey() == ' ') {
+			 return new DoodleWorld(this.jumper.translate(this.jumper.vel.translate(new Posn(0, (Jumper.GRAVITY + 5)))), this.platform);
+		 }else {
+			 return this;
+		 }
+	 }
+} 
+
+
 

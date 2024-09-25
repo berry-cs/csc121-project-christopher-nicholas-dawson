@@ -57,7 +57,7 @@ public class Jumper {
 	}
 	
 	public Jumper boost() {
-		return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, (GRAVITY +(- 10)))));
+		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 5))));
 	}
 	
 	  // Method to translate (move) the jumper's position by a certain offset
