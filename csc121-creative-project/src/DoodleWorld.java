@@ -56,8 +56,12 @@ public class DoodleWorld implements IWorld {
 
 
 	public IWorld update() {
-
-		return new DoodleWorld( this.jumper.move(),  this.platform );
+		if (this.jumper.isCollision(this.platform)) {
+			return new DoodleWorld(this.jumper.boost(), this.platform);
+		} else {
+			return new DoodleWorld(this.jumper.move(this.platform), this.platform);
+		}
+	//	return new DoodleWorld(this.jumper.move(this.platform),  this.platform );
 
 	}
 //<<<<<<< HEAD

@@ -24,7 +24,7 @@ public class Platform {
 	public PApplet draw(PApplet c) {
 
 		c.fill(0, 0, 255);   // solid blue
-		c.rect(120, 80, 220, 10, 28);
+		c.rect(this.posn.x, this.posn.y, this.width, this.height, 28);
 
 		return c; 
 	}

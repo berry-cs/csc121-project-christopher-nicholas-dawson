@@ -7,13 +7,13 @@ import processing.event.*;
 public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywhere in this file
     IWorld w;
     
-    public void settings() {
+    public void settings() { 
         this.size(400, 400);
     }
     
     public void setup() {
-        w = new DoodleWorld(new Jumper( new Posn(250,50), new Posn(0,-10)),
-        		new Platform(new Posn(250,50), 220, 220, "blue")); 
+        w = new DoodleWorld(new Jumper( new Posn(250,50), new Posn(0,0), 15, 15),
+        		new Platform(new Posn(250, 50), 50, 10, "blue")); 
     }
     
     public void draw() {
