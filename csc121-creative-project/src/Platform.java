@@ -31,7 +31,7 @@ public class Platform {
 /*
 	 // Check if the jumper has landed on the platform
     public boolean checkCollision(Jumper jumper) {
-        // Simple collision detection (if the jumper's Y position is on the platform)
+        // collision detection if the jumper's Y position is on the platform
         return jumper.getY() >= y && jumper.getY() <= y + 10 && jumper.getX() >= x && jumper.getX() <= x + 50;
     }
 */
