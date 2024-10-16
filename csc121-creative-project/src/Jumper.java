@@ -62,15 +62,33 @@ public class Jumper {
 	}
 
 	public Jumper move(Platform platform) {
-			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)), this.width, this.height);
+		 if (this.atBottom() ) {
+		   return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
+		 }else {
+			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
+	}
 	}
 
 	public Jumper boost() {
-		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 3))), this.width, this.height);
+		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height);
 	} 
+	
+	
+	public Jumper Collider(Platform platform) {
+		if(this.isCollision(platform)) {
+			return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
+		}else {
+			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
+		}
+	}
+	
 
 	public boolean isCollision(Platform platform) {
-	return (this.loc.y == platform.posn.y);
+		if (this.loc.y >= platform.posn.y - 30   &&   this.loc.y <= platform.posn.y && this.loc.x >= platform.posn.x -5 && this.loc.x <= platform.posn.x + 40) {
+			return true;
+		}else {
+			return false;
+		}
 	} 
 
 	// Method to translate (move) the jumper's position by a certain offset
@@ -84,8 +102,18 @@ public class Jumper {
 		return this.loc;
 	}
 
+	public Boolean atBottom() {
+		if (this.loc.y >= 400 && this.vel.y >= 0) {
+			return true;
+		}else {
+			return false;
+		}
+	}
 
-
+	@Override
+	public String toString() {
+		return "Jumper [loc=" + loc + ", vel=" + vel + ", width=" + width + ", height=" + height + "]";
+	}
 
 
 }
