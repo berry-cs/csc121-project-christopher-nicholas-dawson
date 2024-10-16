@@ -66,7 +66,7 @@ public class Jumper {
 	}
 
 	public Jumper boost() {
-		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 15))), this.width, this.height);
+		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 3))), this.width, this.height);
 	} 
 
 	public boolean isCollision(Platform platform) {
