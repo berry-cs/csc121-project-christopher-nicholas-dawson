@@ -77,6 +77,21 @@ public class Posn {
     }
 
 
+    /** produces a posn where the magnitude of the x and y are limited to the given bound */
+    public Posn bound(int mag) {
+    	int signX = (this.x < 0)  ?  -1  : +1; 
+    	int signY = (this.y < 0)  ?  -1  : +1; 
+    	return new Posn(signX * Math.min(Math.abs(mag), Math.abs(this.x)),
+    					signY * Math.min(Math.abs(mag), Math.abs(this.y)));
+    }
+    
+    /** produces a posn where the x and y values are bounded by the components
+     * of the given min and max */
+    public Posn bound(Posn min, Posn max) {
+    	return new Posn( Math.max(min.x, Math.min(max.x, this.x)),
+    				     Math.max(min.y, Math.min(max.y, this.y)) );
+    }
+    
     
     
 }
