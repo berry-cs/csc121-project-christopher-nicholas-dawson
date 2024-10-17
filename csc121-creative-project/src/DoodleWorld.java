@@ -18,13 +18,13 @@ public class DoodleWorld implements IWorld {
 		super();
 		this.jumper = jumper;
 		this.platform = platform;
-<<<<<<< HEAD
-		this.platform2 = new Platform(new Posn(70, 200), 100, 20, "blue");
+
+		
 		this.platform3 = new Platform(new Posn(300, 120), 80, 20, "blue");
-=======
+
 		this.platform2 = new Platform(new Posn(100, 200), 75, 10, "blue");
 		this.platform3 = new Platform(new Posn(300, 120), 75, 10, "blue");
->>>>>>> cf471927825ea7aab60246c4d41d18e8679c8774
+
 		
 		/*
 		this.star = star;
