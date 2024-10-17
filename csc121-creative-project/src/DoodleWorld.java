@@ -8,14 +8,19 @@ public class DoodleWorld implements IWorld {
 
 	Jumper jumper;
 	Platform platform;
+	Platform platform2;
+	Platform platform3;
 	Star star;
 	Obstacle obstacles;
 	Score score;
 
-	public DoodleWorld(Jumper jumper, Platform platform)   {   //, Platform platform, Star star, IObstacle obsticals, Score score) {
+	public DoodleWorld(Jumper jumper, Platform platform, Platform platform2, Platform platform3)   {   //, Platform platform, Star star, IObstacle obsticals, Score score) {
 		super();
 		this.jumper = jumper;
 		this.platform = platform;
+		this.platform2 = new Platform(new Posn(100, 200), 100, 20, "blue");
+		this.platform3 = new Platform(new Posn(300, 120), 80, 20, "blue");
+		
 		/*
 		this.star = star;
 		this.obstacles = obstacle;
@@ -51,28 +56,41 @@ public class DoodleWorld implements IWorld {
 		c.background(255);  // clear the screen each time (color white)
 		this.jumper.draw(c);
 		this.platform.draw(c);
+		this.platform2.draw(c);
+		this.platform3.draw(c);
+		
 		return c;
 	}
 
 
 	public IWorld update() {
 		if (this.jumper.isCollision(this.platform)) {
-			return new DoodleWorld(this.jumper.boost(), this.platform);
+			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
+		} else if (this.jumper.isCollision(this.platform2)) {
+			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
+
+		
+		} else if (this.jumper.isCollision(this.platform3)) {
+			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
+
+		
+		
+		
 		} else {
-			return new DoodleWorld(this.jumper.move(this.platform), this.platform);
+			return new DoodleWorld(this.jumper.move(this.platform), this.platform, platform2, platform3);
 		}
 	}
 	
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
-			return new DoodleWorld(this.jumper.boost(), this.platform);
+			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
 
 		}else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platform);
+			return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platform, platform2, platform3);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platform);
+			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platform, platform2, platform3);
 		} else {
 			return this;
 		}
