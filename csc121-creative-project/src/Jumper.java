@@ -83,13 +83,24 @@ public class Jumper {
 	}
 	
 
-    public boolean isCollision(Platform platform) {
-        boolean withinYRange = this.loc.y + this.height >= platform.posn.y 
-                            && this.loc.y <= platform.posn.y + platform.height;
-        boolean withinXRange = this.loc.x + this.width >= platform.posn.x 
-                            && this.loc.x <= platform.posn.x + platform.width;
-        return withinYRange && withinXRange;
-    }
+	public boolean isCollision(Platform platform) {
+	    if (withinXRange(platform) && withinYRange(platform)) {
+	        return true;
+	    } else {
+	        return false;
+	    }
+	}
+
+	boolean withinXRange(Platform platform) {
+	    return this.loc.x + this.width >= platform.posn.x 
+	           && this.loc.x <= platform.posn.x + platform.width;
+	}
+
+	boolean withinYRange(Platform platform) {
+	    return this.loc.y + this.height >= platform.posn.y 
+	           && this.loc.y <= platform.posn.y + platform.height;
+	}
+
 
 
 	// Method to translate (move) the jumper's position by a certain offset
