@@ -13,11 +13,12 @@ Platform p1 = new Platform(new Posn(50,50), 10, 4, "blue");
 
 Platform p2 = new Platform(new Posn(100, 400), 100, 20, "blue");
 Platform p3 = new Platform(new Posn(400, 500), 80, 20, "blue");
-DoodleWorld w1 = new DoodleWorld(j1, p1, p2, p3);
+ILoP pl1 = new ConsLoP(p1, new ConsLoP(p2, new ConsLoP(p3, new MTLoP())));
+DoodleWorld w1 = new DoodleWorld(j1, pl1);
 
 @Test
 	void testKeyPressed() {
 		assertEquals( w1, w1.keyPressed(new KeyEvent(null, 0, 0, 0, 'c', 'c')));
-		assertEquals( new DoodleWorld(j1.boost(),p1, p2, p3), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
+		assertEquals( new DoodleWorld(j1.boost(), pl1), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 }
 }

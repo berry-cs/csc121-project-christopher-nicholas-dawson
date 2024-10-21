@@ -61,6 +61,7 @@ public class Jumper {
 		return new Jumper(this.loc, new Posn(this.vel.x + offset.x, this.vel.y + offset.y), this.width, this.height);
 	}
 
+	
 	public Jumper move(Platform platform) {
 		 if (this.atBottom() ) {
 		   return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
@@ -68,6 +69,8 @@ public class Jumper {
 			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
 	}
 	}
+	
+
 
 	public Jumper boost() {
 		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height);
