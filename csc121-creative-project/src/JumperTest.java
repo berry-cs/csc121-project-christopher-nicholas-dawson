@@ -16,15 +16,15 @@ class JumperTest {
 	
 	@Test
 	void moveTest() {
-		assertEquals( new Jumper(new Posn(50,50), new Posn(0,1), 40, 40) ,  j1.move(p1)  );
-		assertEquals(  new Jumper(new Posn(50,80), new Posn(0,11), 40, 40)   ,  j2.move(p1)  );
-		assertEquals(  new Jumper(new Posn(105,90), new Posn(5,-9), 40, 40)   ,  j3.move(p1)  );
+		assertEquals( new Jumper(new Posn(50,50), new Posn(0,1), 40, 40) ,  j1.move()  );
+		assertEquals(  new Jumper(new Posn(50,80), new Posn(0,11), 40, 40)   ,  j2.move()  );
+		assertEquals(  new Jumper(new Posn(105,90), new Posn(5,-9), 40, 40)   ,  j3.move()  );
 		
 		
-		assertEquals( new Jumper(new Posn(100,400), new Posn(0,0), 40, 40)  ,  j4.move(p1)  ); 
+		assertEquals( new Jumper(new Posn(100,400), new Posn(0,0), 40, 40)  ,  j4.move()  ); 
 		
 		assertEquals( new Jumper(new Posn(100,392), new Posn(0,-7), 40, 40),
-					new Jumper(new Posn(100,400), new Posn(0,-8), 40, 40).move(p1));
+					new Jumper(new Posn(100,400), new Posn(0,-8), 40, 40).move());
 		// move()  adds the velocity to the location to change the loction;  y velocity is affected by gravity
 	}
 	

@@ -62,7 +62,7 @@ public class Jumper {
 	}
 
 	
-	public Jumper move(Platform platform) {
+	public Jumper move() {
 		 if (this.atBottom() ) {
 		   return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
 		 }else {
@@ -73,7 +73,7 @@ public class Jumper {
 
 
 	public Jumper boost() {
-		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height);
+		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height); 
 	} 
 	
 	
@@ -85,7 +85,18 @@ public class Jumper {
 		}
 	}
 	
-
+	public boolean isCollisionlop(ILoP platforms) {
+		if (platforms.isEmpty()) {
+			return false;
+		} else if (this.isCollision(platforms.getFirst())) {
+			return true;
+		} else if (this.isCollisionlop(platforms.getRest())){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean isCollision(Platform platform) {
 	    if (withinXRange(platform) && withinYRange(platform)) {
 	        return true;
@@ -117,7 +128,7 @@ public class Jumper {
 		return this.loc;
 	}
 
-	public Boolean atBottom(DoodleWorld w) {
+	public Boolean atBottom() {
 						// w.bottomY()
 		if (this.loc.y >= 400 && this.vel.y >= 0) {
 			return true;

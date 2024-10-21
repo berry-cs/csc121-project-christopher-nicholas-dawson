@@ -5,6 +5,12 @@ import processing.core.PApplet;
 interface ILoP {
 	
  public PApplet draws(PApplet c);
+ 
+ public Platform getFirst();
+ 
+ public ILoP getRest();
+ 
+ public boolean isEmpty(); 
 
 }
 
@@ -13,6 +19,18 @@ class MTLoP implements ILoP {
 	
 	public PApplet draws(PApplet c) {
 		return c;
+	}
+	
+	public boolean isEmpty() {
+		return true;
+	}
+	
+	public Platform getFirst() {
+		return new Platform(new Posn(0, 0), 0, 0, "blue");
+	}
+	
+	public ILoP getRest() {
+		return this;
 	}
 	
 	
@@ -47,6 +65,18 @@ class ConsLoP implements ILoP {
 		first.draw(c);
 		rest.draws(c);
 		return c;
+	}
+	
+	public boolean isEmpty() {
+		return false;
+	}
+	
+	public Platform getFirst() {
+		return first;
+	}
+	
+	public ILoP getRest() {
+		return rest;
 	}
 
 	@Override

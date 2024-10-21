@@ -13,11 +13,6 @@ public class DoodleWorld implements IWorld {
 	Score score;
 	int scrollAmount;
 
-
-	//public DoodleWorld(Jumper jumper, ILoP platform) {
-	//	this(jumper, platform, 0);
-	//}
-
 		
 	public DoodleWorld(Jumper jumper, ILoP platforms, int scrollAmount) {
 		super();
@@ -25,12 +20,6 @@ public class DoodleWorld implements IWorld {
 		this.platforms = platforms;
 		this.scrollAmount = scrollAmount;
 	}
-
-	//	this.platform3 = new Platform(new Posn(300, 120), 80, 20, "blue");
-
-//		this.platform2 = new Platform(new Posn(100, 200), 75, 10, "blue");
-	//	this.platform3 = new Platform(new Posn(300, 120), 75, 10, "blue");
-
 		
 		/*
 		this.star = star;
@@ -84,8 +73,11 @@ public class DoodleWorld implements IWorld {
     public IWorld update() {
         // Handle collisions and updates
     	
-    	Jumper newJumper = this.jumper.boost();
-    					//   this.jumper.boost(this)
+    	Jumper newJumper = this.jumper.move();
+    	
+    	if (this.jumper.isCollisionlop(platforms)) {
+    		newJumper = this.jumper.boost();
+    	}
     	ILoP newPlatforms;
     	if (readyForNewPlatform()) {
     		newPlatforms = new ConsLoP(new Platform( topY() ), this.platforms);
@@ -94,27 +86,9 @@ public class DoodleWorld implements IWorld {
     	}
     	
     	
-        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 90); // just using this as a placeholder 
-        											// so i could make sure the platforms were drawn correctly,
-        											// still figuring out collision with lists
+        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 90); 
     }
-/*	public IWorld update() {
-		if (this.jumper.isCollision(this.platform)) {
-			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
-		} else if (this.jumper.isCollision(this.platform2)) {
-			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
 
-		
-		} else if (this.jumper.isCollision(this.platform3)) {
-			return new DoodleWorld(this.jumper.boost(), this.platform, platform2, platform3);
-
-		
-		
-		
-		} else {
-			return new DoodleWorld(this.jumper.move(this.platform), this.platform, platform2, platform3);
-		}
-	} */
 	
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
