@@ -19,7 +19,8 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
         				new ConsLoP 
         				(new Platform(new Posn(100, 200), 75, 10, "blue"), 
         				new ConsLoP
-        		        		(new Platform(new Posn(300, 120), 75, 10, "blue"), new MTLoP())))); 
+        		        		(new Platform(new Posn(300, 120), 75, 10, "blue"), new MTLoP()))),
+        		 0); 
     } 
 
 	public void draw() {

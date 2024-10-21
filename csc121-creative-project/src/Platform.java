@@ -91,6 +91,14 @@ public class Platform {
 		this.color = color;
 		
 	}
+	
+	/** construct a randomly placed platform at the given y in a random color */
+	public Platform(int ypos) {
+		this.posn = new Posn( 100, ypos );
+		this.width =75;
+		this.height = 10;
+		this.color = "blue";
+	}
 
 	/** produce a visual platform */ 
 	public PApplet draw(PApplet c) {

@@ -117,7 +117,8 @@ public class Jumper {
 		return this.loc;
 	}
 
-	public Boolean atBottom() {
+	public Boolean atBottom(DoodleWorld w) {
+						// w.bottomY()
 		if (this.loc.y >= 400 && this.vel.y >= 0) {
 			return true;
 		}else {
