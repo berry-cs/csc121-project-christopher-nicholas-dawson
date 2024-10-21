@@ -66,7 +66,7 @@ public class DoodleWorld implements IWorld {
 	public boolean readyForNewPlatform() {
 		
 		
-		return Math.random() < 0.01;
+		return Math.random() < 0.015;
 	}
 
 	
