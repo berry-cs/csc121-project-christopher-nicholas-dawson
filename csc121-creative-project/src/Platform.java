@@ -1,4 +1,5 @@
 import java.util.Objects;
+import java.util.Random;
 
 import processing.core.PApplet;
 
@@ -124,7 +125,9 @@ public class Platform {
 	
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
-		this.posn = new Posn( 100, ypos );
+		Random rand = new Random();
+		int randomX = rand.nextInt(400 - 75);
+		this.posn = new Posn( randomX, ypos );
 		this.width =75;
 		this.height = 10;
 		this.color = "blue";
