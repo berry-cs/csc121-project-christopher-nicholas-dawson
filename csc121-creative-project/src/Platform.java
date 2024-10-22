@@ -127,7 +127,7 @@ public class Platform {
 	public Platform(int ypos) {
 		Random rand = new Random();
 		int randomX = rand.nextInt(400 - 75);
-		this.posn = new Posn( randomX, ypos );
+		this.posn = new Posn(randomX, ypos);
 		this.width =75;
 		this.height = 10;
 		this.color = "blue";
@@ -137,7 +137,7 @@ public class Platform {
 	public PApplet draw(PApplet c) {
 
 		c.fill(0, 0, 255);   // solid blue
-		c.rect(this.posn.x, this.posn.y, this.width, this.height, 28);
+		c.rect((int)this.posn.x, (int)this.posn.y, this.width, this.height, 28);
 
 		return c; 
 	}

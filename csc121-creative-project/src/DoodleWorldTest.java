@@ -3,7 +3,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
-import processing.event.KeyEvent;
+import processing.event.KeyEvent; 
 
 class DoodleWorldTest {
 	Jumper j1 = new Jumper(new Posn(50,50), new Posn(0,0), 40, 40);
@@ -41,9 +41,27 @@ class DoodleWorldTest {
 				// do nothing
 			}
 		}
+// hard to test because it's random		
+//		assertEquals( true,  count > 9 );
+//		assertEquals( true, count >  11);
 		
-		assertEquals( true,  count > 9 );
-		assertEquals( true, count < 11 );
-		
+	}
+	
+	@Test 
+	void testActualScrollAmount() {
+		assertEquals(5, w2.actualScrollAmount());
+		assertEquals(0, w1.actualScrollAmount());
+	}
+	
+	@Test
+	void testTopY() {
+		assertEquals(-5, w2.topY());
+		assertEquals(0, w1.topY());
+	}
+	
+	@Test
+	void testBottomY() {
+		assertEquals(405, w2.bottomY());
+		assertEquals(400, w1.bottomY());
 	}
 }

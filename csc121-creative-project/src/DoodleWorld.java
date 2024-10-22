@@ -64,29 +64,29 @@ public class DoodleWorld implements IWorld {
 	
 	/** decide whether a new platform should be generated */
 	public boolean readyForNewPlatform() {
-		
-		
-		return Math.random() < 0.015;
+		return Math.random() < 0.0125;
 	}
 
 	
-    public IWorld update() {
-        // Handle collisions and updates
+    public IWorld update() { 
     	
     	Jumper newJumper = this.jumper.move();
     	
     	if (this.jumper.isCollisionlop(platforms)) {
     		newJumper = this.jumper.boost();
     	}
+    	
+    	if (this.jumper.atBottom(actualScrollAmount())) {
+    		throw new RuntimeException("Game Over");
+    	}
     	ILoP newPlatforms;
     	if (readyForNewPlatform()) {
-    		newPlatforms = new ConsLoP(new Platform( topY() ), this.platforms);
+    		newPlatforms = new ConsLoP(new Platform(topY()), this.platforms);
     	} else {
     		newPlatforms = this.platforms;
     	}
     	
-    	
-        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 90); 
+        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 80); 
     }
 
 	

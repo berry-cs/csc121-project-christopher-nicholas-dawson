@@ -4,10 +4,10 @@ import java.util.Objects;
 import processing.core.PApplet;
 
 public class Posn {
-    int x;
-    int y;
+    double x;
+    double y;
     
-    public Posn(int x, int y) {
+    public Posn(double x, double y) {
         this.x = x;
         this.y = y;
     }
@@ -15,23 +15,23 @@ public class Posn {
     /**
      * @return the x
      */
-    public int getX() {
+    public double getX() {
         return x;
     }
 
     /**
      * @return the y
      */
-    public int getY() {
+    public double getY() {
         return y;
     }
     
     /** draws a line from this point to that */
-    public PApplet drawLineTo(PApplet c, Posn that) {
+  /*  public PApplet drawLineTo(PApplet c, Posn that) {
         c.line(this.x, this.y, that.x, that.y);
 
         return c;
-    }
+    } */
     
     /** produces the distance between this and that */
     public double distanceTo(Posn that) {

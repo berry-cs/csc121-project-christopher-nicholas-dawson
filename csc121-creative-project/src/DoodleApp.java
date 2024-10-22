@@ -13,13 +13,17 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 
 	
 	   public void setup() {
-        w = new DoodleWorld(new Jumper( new Posn(250,50), new Posn(0,0), 15, 15),
+        w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 15, 15),
         		 new ConsLoP 
-        		 (new Platform(new Posn(220, 200), 75, 10, "blue"),
+        		 (new Platform(new Posn(200, 310), 75, 10, "blue"),
         				new ConsLoP 
-        				(new Platform(new Posn(100, 200), 75, 10, "blue"), 
+        				(new Platform(new Posn(250, 250), 75, 10, "blue"), 
         				new ConsLoP
-        		        		(new Platform(new Posn(300, 120), 75, 10, "blue"), new MTLoP()))),
+        		        		(new Platform(new Posn(300, 150), 75, 10, "blue"),
+        		        				new ConsLoP
+        		        				(new Platform(new Posn(200, 100), 75, 10, "blue"),
+        		        						new ConsLoP
+                		        				(new Platform(new Posn(200, 50), 75, 10, "blue"), new MTLoP()))))),
         		 0); 
     } 
 
