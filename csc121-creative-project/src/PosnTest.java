@@ -9,6 +9,7 @@ class PosnTest {
 	Posn p3 = new Posn(200, 10);
 	Posn p4 = new Posn(20, 0);
 	Posn p5 = new Posn(-20, -50);
+	Posn p6 = new Posn(2.5, 10.5);
 		
 
 	@Test
@@ -19,6 +20,18 @@ class PosnTest {
 		assertEquals(80.6, p1.distanceTo(p4), 0.1);
 		assertEquals(80.6, p4.distanceTo(p1), 0.1);
 		assertEquals(0,   p3.distanceTo(p3));
+	}
+	
+	@Test
+	void testGetX() {
+		assertEquals(2.5, p6.getX());
+		assertEquals(-20, p5.getX());
+	}
+	
+	@Test
+	void testGetY() {
+		assertEquals(10.5, p6.getY());
+		assertEquals(-50, p5.getY());
 	}
 	
 	@Test

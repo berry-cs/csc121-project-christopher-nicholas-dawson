@@ -71,25 +71,14 @@ class JumperTest {
 		assertEquals(new Jumper(new Posn(105, 90), new Posn(5, -9.55), 40, 40), j3.Collider(p1));
 	}
 	
+	@Test
+	void testBoost() {
+		assertEquals(new Jumper(new Posn(50, 50), new Posn(0, -8.55), 40, 40), j1.boost());
+	}
 	
-	//@Test
-/*	void boostTest() {
-		assertEquals( new Jumper(new Posn(50,50), new Posn(0,-8), 40, 40)  , j1.boost() );     
-		assertEquals( new Jumper(new Posn(50, 80), new Posn(0, 2), 40, 40)  , j2.boost() );
-		
-		assertEquals( new Jumper(new Posn(100,400), new Posn(0,-8), 40, 40), 
-				new Jumper(new Posn(100,400), new Posn(0,0), 40, 40).boost() );
-
-		// i.e. boost() changes the velocity only  (adds 10 to the y part)
-	}*/
-	
-	
-	
-//	@Test
-//	void Jumptest() {
-		//assertEquals(j1.loc.translate(j1.vel.translate(new Posn(0,10))), new Posn(50,60));
-		//assertEquals(j3.loc.translate(j3.vel.translate(new Posn(0,10))), new Posn(100,100));
-		//assertEquals(j2.loc.translate(j2.vel.translate(new Posn(0,10))), new Posn(50,90));
-	
+	@Test
+	void testTranslateVel() {
+		assertEquals(new Jumper(new Posn(60, 60), new Posn(0, 0), 40, 40), j1.translate(new Posn(10, 10)));
+	}
 
 }

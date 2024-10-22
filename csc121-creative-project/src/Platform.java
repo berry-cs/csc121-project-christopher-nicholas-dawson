@@ -26,6 +26,7 @@ class MTLoP implements ILoP {
 		return true;
 	}
 	
+	// produces a "non-existant platform, best way i could think to handle this
 	public Platform getFirst() {
 		return new Platform(new Posn(0, 0), 0, 0, "blue");
 	}
@@ -138,7 +139,6 @@ public class Platform {
 
 		c.fill(0, 0, 255);   // solid blue
 		c.rect((int)this.posn.x, (int)this.posn.y, this.width, this.height, 28);
-
 		return c; 
 	}
 
