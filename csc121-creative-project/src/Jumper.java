@@ -88,6 +88,7 @@ public class Jumper {
 		} else {
 			return false;
 		}
+		
 	}
 
 	boolean withinXRange(Platform platform) {

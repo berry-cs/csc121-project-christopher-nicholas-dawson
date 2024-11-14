@@ -19,6 +19,7 @@ public class DoodleWorld implements IWorld {
 		this.jumper = jumper;
 		this.platforms = platforms;
 		this.scrollAmount = scrollAmount;
+		this.score = new Score();
 	}
 		
 		/*
@@ -58,6 +59,7 @@ public class DoodleWorld implements IWorld {
 		c.translate(0, actualScrollAmount());
 		this.jumper.draw(c);
 		this.platforms.draws(c);
+		score.draw(c);
 		return c;
 	}
 
@@ -73,7 +75,9 @@ public class DoodleWorld implements IWorld {
     	Jumper newJumper = this.jumper.move();
     	
     	if (this.jumper.isCollisionlop(platforms)) {
+    		score.increment(100);
     		newJumper = this.jumper.boost();
+    		
     	}
     	
     	if (this.jumper.atBottom(actualScrollAmount())) {
