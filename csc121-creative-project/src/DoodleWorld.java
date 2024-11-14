@@ -14,7 +14,7 @@ public class DoodleWorld implements IWorld {
 	int scrollAmount;
 
 		
-	public DoodleWorld(Jumper jumper, ILoP platforms, int scrollAmount) {
+	public DoodleWorld(Jumper jumper, ILoP platforms, int scrollAmount, Score score) {
 		super();
 		this.jumper = jumper;
 		this.platforms = platforms;
@@ -81,7 +81,7 @@ public class DoodleWorld implements IWorld {
     	Jumper newJumper = this.jumper.move();
     	
     	if (this.jumper.isCollisionlop(platforms)) {
-    		score.increment(100);
+    		score.increment(100); // increase score by 100 points
     		newJumper = this.jumper.boost();
     		
     	}
@@ -96,20 +96,20 @@ public class DoodleWorld implements IWorld {
     		newPlatforms = this.platforms;
     	}
     	
-        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 80); 
+        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 80, this.score); 
     }
 
 	
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
-			return new DoodleWorld(this.jumper.boost(), this.platforms, this.scrollAmount);
+			return new DoodleWorld(this.jumper.boost(), this.platforms, this.scrollAmount, this.score);
 
 		}else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.scrollAmount);
+			return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.scrollAmount);
+			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.scrollAmount, this.score);
 		} else {
 			return this;
 		}
