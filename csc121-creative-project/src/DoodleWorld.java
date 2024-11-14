@@ -59,7 +59,13 @@ public class DoodleWorld implements IWorld {
 		c.translate(0, actualScrollAmount());
 		this.jumper.draw(c);
 		this.platforms.draws(c);
+		
+		c.translate(0, -actualScrollAmount());
 		score.draw(c);
+		
+		c.translate(0, actualScrollAmount());
+		
+		
 		return c;
 	}
 
