@@ -3,7 +3,9 @@ import java.util.Objects;
 import processing.core.PApplet;
 
 public class Score {
-//	int score = 0;
+
+
+	//	int score = 0;
 	private int points;
 	Posn Score_Block;
 	
@@ -29,16 +31,15 @@ public class Score {
 	
 	
 	
-	/*
-	Score(int score, Posn score_Block) {
+	public Score(int points, Posn score_Block) {
 		super();
-		this.score = score;
+		this.points = points;
 		Score_Block = score_Block;
 	}
 
-	@Override
+@Override
 	public int hashCode() {
-		return Objects.hash(score);
+		return Objects.hash(Score_Block, points);
 	}
 
 	@Override
@@ -50,9 +51,7 @@ public class Score {
 		if (getClass() != obj.getClass())
 			return false;
 		Score other = (Score) obj;
-		return score == other.score;
+		return Objects.equals(Score_Block, other.Score_Block) && points == other.points;
 	}
-	
-	*/
 }
 
