@@ -4,14 +4,14 @@ import processing.core.PApplet;
 
 public class Score {
 
-
 	//	int score = 0;
 	private int points;
-	Posn Score_Block;
 	
 	public Score() {
 		this.points = 0;
 	}
+	
+	
 	
 	public void increment(int amount) {
 		this.points += amount;
@@ -31,15 +31,14 @@ public class Score {
 	
 	
 	
-	public Score(int points, Posn score_Block) {
+	public Score(int points) {
 		super();
 		this.points = points;
-		Score_Block = score_Block;
 	}
 
-@Override
+	@Override
 	public int hashCode() {
-		return Objects.hash(Score_Block, points);
+		return Objects.hash(points);
 	}
 
 	@Override
@@ -51,7 +50,9 @@ public class Score {
 		if (getClass() != obj.getClass())
 			return false;
 		Score other = (Score) obj;
-		return Objects.equals(Score_Block, other.Score_Block) && points == other.points;
+		return points == other.points;
 	}
+
+
 }
 

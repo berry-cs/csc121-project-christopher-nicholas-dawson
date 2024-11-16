@@ -89,5 +89,6 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 
 	public static void main(String[] args) {
 		PApplet.runSketch(new String[] { DoodleApp.class.getName() }, new DoodleApp());
+
 	}
 }
