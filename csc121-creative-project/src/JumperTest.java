@@ -61,14 +61,14 @@ class JumperTest {
 	
 	@Test
 	void testIsCollisionLop() {
-		assertEquals(true, j1.isCollisionlop(pl1));
-		assertEquals(false, j3.isCollisionlop(pl1));
+		assertEquals(true, j1.isCollisionLop(pl1));
+		assertEquals(false, j3.isCollisionLop(pl1));
 	}
 	
 	@Test
 	void testCollider() {
-		assertEquals(new Jumper(new Posn(50,50), new Posn(0,0), 40, 40), j1.Collider(p1));
-		assertEquals(new Jumper(new Posn(105, 90), new Posn(5, -9.55), 40, 40), j3.Collider(p1));
+		assertEquals(new Jumper(new Posn(50,50), new Posn(0,0), 40, 40), j1.collider(p1));
+		assertEquals(new Jumper(new Posn(105, 90), new Posn(5, -9.55), 40, 40), j3.collider(p1));
 	}
 	
 	@Test
