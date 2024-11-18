@@ -4,38 +4,38 @@ import java.util.Random;
 import processing.core.PApplet;
 
 interface ILoP {
-	
- public PApplet draws(PApplet c);
- 
- public Platform getFirst();
- 
- public ILoP getRest();
- 
- public boolean isEmpty(); 
+
+	public PApplet draws(PApplet c);
+
+	public Platform getFirst();
+
+	public ILoP getRest();
+
+	public boolean isEmpty(); 
 
 }
 
 class MTLoP implements ILoP {
 	MTLoP() {}
-	
+
 	public PApplet draws(PApplet c) {
 		return c;
 	}
-	
+
 	public boolean isEmpty() {
 		return true;
 	}
-	
+
 	// produces a "non-existant platform, best way i could think to handle this
 	public Platform getFirst() {
 		return new Platform(new Posn(0, 0), 0, 0, "blue");
 	}
-	
+
 	public ILoP getRest() {
 		return this;
 	}
-	
-	
+
+
 	@Override
 	public boolean equals(Object other) {
 		return other instanceof MTLoP;
@@ -57,26 +57,26 @@ class MTLoP implements ILoP {
 class ConsLoP implements ILoP {
 	private Platform first;
 	private ILoP rest;
-	
+
 	ConsLoP(Platform first, ILoP rest) {
 		this.first = first;
 		this.rest = rest;
 	}
-	
+
 	public PApplet draws(PApplet c) {
 		first.draw(c);
 		rest.draws(c);
 		return c;
 	}
-	
+
 	public boolean isEmpty() {
 		return false;
 	}
-	
+
 	public Platform getFirst() {
 		return first;
 	}
-	
+
 	public ILoP getRest() {
 		return rest;
 	}
@@ -102,8 +102,8 @@ class ConsLoP implements ILoP {
 	public String toString() {
 		return "ConsLoP [first=" + first + ", rest=" + rest + "]";
 	}
-	
-	
+
+
 }
 
 /** Represents a still platform*/
@@ -113,7 +113,7 @@ public class Platform {
 	private int width;
 	private int height;
 	private String color;
-	
+
 
 	public Platform(Posn posn, int width, int height, String color) {
 		super();
@@ -121,9 +121,24 @@ public class Platform {
 		this.width = width;
 		this.height = height;
 		this.color = color;
-		
+
 	}
-	
+
+	// returns a platforms posn
+	public Posn getPosn() {
+		return posn;
+	}
+
+	// returns a platforms width
+	public int getWidth() {
+		return width;
+	}
+
+	// returns a platforms height
+	public int getHeight() {
+		return height;
+	}
+
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
 		Random rand = new Random();
@@ -138,11 +153,11 @@ public class Platform {
 	public PApplet draw(PApplet c) {
 
 		c.fill(0, 0, 255);   // solid blue
-		c.rect((int)this.posn.x, (int)this.posn.y, this.width, this.height, 28);
+		c.rect((int)this.posn.getX(), (int)this.posn.getY(), this.width, this.height, 28);
 		return c; 
 	}
 
-	
+
 
 	@Override
 	public String toString() {

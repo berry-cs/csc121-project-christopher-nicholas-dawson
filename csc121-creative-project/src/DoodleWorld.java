@@ -66,7 +66,7 @@ public class DoodleWorld implements IWorld {
     public IWorld update() { 
         Jumper newJumper = this.jumper.move();
 
-        if (this.jumper.isCollisionlop(platforms)) {
+        if (this.jumper.isCollisionLop(platforms)) {
             score.increment(100); // increase score by 100 points
             newJumper = this.jumper.boost();
         }

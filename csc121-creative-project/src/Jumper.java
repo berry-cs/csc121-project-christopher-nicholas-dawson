@@ -48,7 +48,7 @@ public class Jumper {
 	}
 
 	public Jumper translateVel(Posn offset) {
-		return new Jumper(this.loc, new Posn(this.vel.x + offset.x, this.vel.y + offset.y), this.width, this.height);
+		return new Jumper(this.loc, new Posn(this.vel.getX() + offset.getX(), this.vel.getY() + offset.getY()), this.width, this.height);
 	}
 
 
@@ -62,7 +62,7 @@ public class Jumper {
 	} 
 
 
-	public Jumper Collider(Platform platform) {
+	public Jumper collider(Platform platform) {
 		if(this.isCollision(platform)) {
 			return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
 		}else {
@@ -70,12 +70,12 @@ public class Jumper {
 		}
 	}
 
-	public boolean isCollisionlop(ILoP platforms) {
+	public boolean isCollisionLop(ILoP platforms) {
 		if (platforms.isEmpty()) {
 			return false;
 		} else if (this.isCollision(platforms.getFirst())) {
 			return true;
-		} else if (this.isCollisionlop(platforms.getRest())){
+		} else if (this.isCollisionLop(platforms.getRest())){
 			return true;
 		} else {
 			return false;
@@ -92,20 +92,20 @@ public class Jumper {
 	}
 
 	boolean withinXRange(Platform platform) {
-		return this.loc.x + this.width >= platform.posn.x 
-				&& this.loc.x <= platform.posn.x + platform.width;
+		return this.loc.getX() + this.width >= platform.getPosn().getX() 
+				&& this.loc.getX() <= platform.getPosn().getX() + platform.getWidth();
 	}
 
 	boolean withinYRange(Platform platform) {
-		return this.loc.y + this.height >= platform.posn.y 
-				&& this.loc.y <= platform.posn.y + platform.height;
+		return this.loc.getY() + this.height >= platform.getPosn().getY() 
+				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
 	}
 
 
 
 	// Method to translate (move) the jumper's position by a certain offset
 	public Jumper translate(Posn offset) {
-		return new Jumper(new Posn(this.loc.x + offset.x, this.loc.y + offset.y), this.vel, this.width, this.height);
+		return new Jumper(new Posn(this.loc.getX() + offset.getX(), this.loc.getY() + offset.getY()), this.vel, this.width, this.height);
 	}
 
 
@@ -116,7 +116,7 @@ public class Jumper {
 
 	// determines if this jumper is at the bottom of the screen or not
 	public Boolean atBottom(int scrollamt) {
-		return this.loc.y >= 400 - scrollamt;
+		return this.loc.getY() >= 400 - scrollamt;
 	}
 
 	@Override
