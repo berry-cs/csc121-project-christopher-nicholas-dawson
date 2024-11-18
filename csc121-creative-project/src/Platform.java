@@ -55,8 +55,8 @@ class MTLoP implements ILoP {
 
 
 class ConsLoP implements ILoP {
-	Platform first;
-	ILoP rest;
+	private Platform first;
+	private ILoP rest;
 	
 	ConsLoP(Platform first, ILoP rest) {
 		this.first = first;
@@ -109,10 +109,10 @@ class ConsLoP implements ILoP {
 /** Represents a still platform*/
 public class Platform {
 
-	Posn posn;
-	int width;
-	int height;
-	String color;
+	private Posn posn;
+	private int width;
+	private int height;
+	private String color;
 	
 
 	public Platform(Posn posn, int width, int height, String color) {

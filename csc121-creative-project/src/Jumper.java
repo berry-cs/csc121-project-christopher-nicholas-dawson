@@ -3,10 +3,10 @@ import java.util.Objects;
 import processing.core.PApplet;
 
 public class Jumper {
-	Posn loc;
-	Posn vel;
-	int width;
-	int height;
+	private Posn loc;
+	private Posn vel;
+	private int width;
+	private int height;
 	//velocity
 
 	static double GRAVITY = .45;

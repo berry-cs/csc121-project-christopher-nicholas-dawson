@@ -7,7 +7,7 @@ public class Score {
 	//	int score = 0;
 	private int points;
 	
-	public Score() {
+	Score() {
 		this.points = 0;
 	}
 	

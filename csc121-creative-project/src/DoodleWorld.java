@@ -5,12 +5,12 @@ import processing.event.KeyEvent;
 /** represent the state of our doodle jump animation */
 public class DoodleWorld implements IWorld {
 
-    Jumper jumper;
-    ILoP platforms;
-    Star star;
-    Obstacle obstacles;
-    Score score;
-    int scrollAmount;
+    private Jumper jumper;
+    private ILoP platforms;
+    private Star star;
+    private Obstacle obstacles;
+    private Score score;
+    private int scrollAmount;
 
     public DoodleWorld(Jumper jumper, ILoP platforms, int scrollAmount, Score score) {
         this.jumper = jumper;

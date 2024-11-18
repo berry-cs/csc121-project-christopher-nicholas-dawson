@@ -5,7 +5,7 @@ import processing.event.*;
  * Provides the scaffolding to launch a Processing application
  */
 public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywhere in this file
-	IWorld w;
+	private IWorld w;
 
 	public void settings() { 
 		this.size(400, 400);
