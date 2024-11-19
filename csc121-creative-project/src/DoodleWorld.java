@@ -6,15 +6,16 @@ import processing.event.KeyEvent;
 public class DoodleWorld implements IWorld {
 
     Jumper jumper;
-    ILoP platforms;
+    LoX<Platform> platforms;
     Star star;
-    Obstacle obstacles;
+    LoX<Obstacle> obstacles;
     Score score;
     int scrollAmount;
 
-    public DoodleWorld(Jumper jumper, ILoP platforms, int scrollAmount, Score score) {
+    public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
         this.jumper = jumper;
         this.platforms = platforms;
+        this.obstacles = obstacles;
         this.scrollAmount = scrollAmount;
         this.score = score; // Use the score parameter directly
     }
@@ -49,8 +50,9 @@ public class DoodleWorld implements IWorld {
         c.translate(0, actualScrollAmount());
         this.jumper.draw(c);
         this.platforms.draws(c);
+        this.obstacles.draws(c);
 
-        c.translate(0, -actualScrollAmount());
+        c.translate(0, - actualScrollAmount());
         score.draw(c);
         
         c.translate(0, actualScrollAmount());
@@ -60,7 +62,11 @@ public class DoodleWorld implements IWorld {
 
     /** decide whether a new platform should be generated */
     public boolean readyForNewPlatform() {
-        return Math.random() < 0.0125;
+        return Math.random() < 0.02;
+    }
+    
+    public boolean readyForNewObstacle() {
+    	return Math.random() < 0.005;
     }
 
     public IWorld update() { 
@@ -70,30 +76,41 @@ public class DoodleWorld implements IWorld {
             score.increment(100); // increase score by 100 points
             newJumper = this.jumper.boost();
         }
+        
+        if (this.jumper.isCollisionLoB(obstacles)) {
+        	throw new RuntimeException("Game Over");
+        }
 
         if (this.jumper.atBottom(actualScrollAmount())) {
             throw new RuntimeException("Game Over");
         }
 
-        ILoP newPlatforms;
+        LoX<Platform> newPlatforms;
         if (readyForNewPlatform()) {
-            newPlatforms = new ConsLoP(new Platform(topY()), this.platforms);
+            newPlatforms = new Cons<Platform>(new Platform(topY()), this.platforms);
         } else {
             newPlatforms = this.platforms;
         }
+        
+        LoX<Obstacle> newObstacles;
+        if (readyForNewObstacle()) {
+        	newObstacles = new Cons<Obstacle>(new Obstacle(topY()), this.obstacles);
+        } else {
+        	newObstacles = this.obstacles;
+        }
 
-        return new DoodleWorld(newJumper, newPlatforms, this.scrollAmount + 80, this.score); 
+        return new DoodleWorld(newJumper, newPlatforms, newObstacles, this.scrollAmount + 80, this.score); 
     }
 
     public DoodleWorld keyPressed(KeyEvent kev) {
         if (kev.getKey() == ' ') {  // space
-            return new DoodleWorld(this.jumper.boost(), this.platforms, this.scrollAmount, this.score);
+            return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.scrollAmount, this.score);
         } else if (kev.getKeyCode() == PApplet.LEFT) {
             // Move jumper to the left by translating its position by -10 units in x
-            return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.scrollAmount, this.score);
+            return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
         } else if (kev.getKeyCode() == PApplet.RIGHT) {
             // Move jumper to the right by translating its position by 10 units in x
-            return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.scrollAmount, this.score);
+            return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
         } else {
             return this;
         }

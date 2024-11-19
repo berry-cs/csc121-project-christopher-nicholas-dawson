@@ -6,19 +6,19 @@ class PlatformTest {
 
 	Platform pl1 = new Platform(new Posn(50, 50), 10, 4, "blue");
 	Platform pl2 = new Platform(new Posn(100, 100), 10, 4, "blue");
-	ILoP lop1 = new ConsLoP(pl1, new ConsLoP( pl2, new MTLoP())); 
-	ILoP MTlist = new MTLoP();
+	LoX<Platform> lop1 = new Cons<Platform>(pl1, new Cons<Platform>( pl2, new MT<Platform>())); 
+	LoX<Platform> MTlist = new MT<Platform>();
 	
 	@Test
-	void testGetFirst() {
+	void testGetFirst() { 
 		assertEquals(pl1, lop1.getFirst());
-		assertEquals(new Platform(new Posn(0,0), 0, 0, "blue"), MTlist.getFirst());
+		assertEquals(null, MTlist.getFirst());
 	}
 	
 	@Test
 	void testGetRest() {
-		assertEquals(new ConsLoP(pl2, new MTLoP()), lop1.getRest());
-		assertEquals(new MTLoP(), MTlist.getRest());
+		assertEquals(new Cons<Platform>(pl2, new MT<Platform>()), lop1.getRest());
+		assertEquals(new MT<Platform>(), MTlist.getRest());
 	}
 	
 	@Test

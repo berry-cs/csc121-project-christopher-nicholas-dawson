@@ -6,6 +6,10 @@ import processing.event.*;
  */
 public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywhere in this file
 	IWorld w;
+	
+	public static final int platwid = 75;
+	public static final int plahgt = 10;
+	public static final String placol = "blue";
 
 	public void settings() { 
 		this.size(400, 400);
@@ -14,16 +18,18 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	
 	   public void setup() {
         w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 15, 15),
-        		 new ConsLoP 
-        		 (new Platform(new Posn(200, 310), 75, 10, "blue"),
-        				new ConsLoP 
-        				(new Platform(new Posn(250, 250), 75, 10, "blue"), 
-        				new ConsLoP
-        		        		(new Platform(new Posn(300, 150), 75, 10, "blue"),
-        		        				new ConsLoP
-        		        				(new Platform(new Posn(200, 100), 75, 10, "blue"),
-        		        						new ConsLoP
-                		        				(new Platform(new Posn(200, 50), 75, 10, "blue"), new MTLoP()))))),
+        		 new Cons<Platform> 
+        		 (new Platform(new Posn(200, 310), platwid, plahgt, placol),
+        				new Cons<Platform> 
+        				(new Platform(new Posn(250, 250), platwid, plahgt, placol), 
+        				new Cons<Platform>
+        		        		(new Platform(new Posn(300, 150), platwid, plahgt, placol),
+        		        				new Cons<Platform>
+        		        				(new Platform(new Posn(200, 100), platwid, plahgt, placol),
+        		        						new Cons<Platform>
+                		        				(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
+        		 new Cons<Obstacle>
+        		 (new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
         		 0, new Score()); 
     } 
 
