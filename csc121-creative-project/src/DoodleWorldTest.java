@@ -13,21 +13,28 @@ class DoodleWorldTest {
 
 	Platform p2 = new Platform(new Posn(100, 400), 100, 20, "blue");
 	Platform p3 = new Platform(new Posn(400, 500), 80, 20, "blue");
-	ILoP pl1 = new ConsLoP(p1, new ConsLoP(p2, new ConsLoP(p3, new MTLoP())));
+	LoX<Platform> pl1 = new Cons<Platform>(p1, new Cons<Platform>(p2, new Cons<Platform>(p3, new MT<Platform>())));
+	
+	
+	Obstacle ob1 = new Obstacle(new Posn(50,50), 10, 4, "red");
+
+	Obstacle ob2 = new Obstacle(new Posn(100, 400), 100, 20, "red");
+	Obstacle ob3 = new Obstacle(new Posn(400, 500), 80, 20, "red");
+	LoX<Obstacle> obl1 = new Cons<Obstacle>(ob1, new Cons<Obstacle>(ob2, new Cons<Obstacle>(ob3, new MT<Obstacle>())));
 
 
 
-	DoodleWorld w1 = new DoodleWorld(j1, pl1, 0, new Score());
-	DoodleWorld w2 = new DoodleWorld(j1, pl1, 500, new Score());
+	DoodleWorld w1 = new DoodleWorld(j1, pl1, obl1, 0, new Score());
+	DoodleWorld w2 = new DoodleWorld(j1, pl1, obl1, 500, new Score());
 
 
 	@Test
 	void testKeyPressed() {
 		assertEquals( w1, w1.keyPressed(new KeyEvent(null, 0, 0, 0, 'c', 'c')));
 
-		assertEquals( new DoodleWorld(j1.boost(), pl1, 0, null), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
+		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, 0, null), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
-		assertEquals( new DoodleWorld(j1.boost(), pl1, 0, new Score() ), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
+		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, 0, new Score() ), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
 	}
 

@@ -10,7 +10,7 @@ class JumperTest {
 	Jumper j2 = new Jumper(new Posn(50,70), new Posn(0,10), 40, 40);
 	Jumper j3 = new Jumper(new Posn(100,100), new Posn(5,-10), 40, 40);
 	Platform p1 = new Platform(new Posn(50,50), 10, 4, "blue");
-	ILoP pl1 = new ConsLoP(p1, new MTLoP());
+	LoX<Platform> pl1 = new Cons<Platform>(p1, new MT<Platform>());
 
 	Jumper j4 = new Jumper(new Posn(100,400), new Posn(5,7), 40, 40);  // at bottom of the world
 
@@ -43,20 +43,20 @@ class JumperTest {
 	
 	@Test
 	void testWithinXRange() {
-		assertEquals(true, j1.withinXRange(p1));
-		assertEquals(false, j3.withinXRange(p1));
+		assertEquals(true, j1.withinXRangePla(p1));
+		assertEquals(false, j3.withinXRangePla(p1));
 	}
 	
 	@Test
 	void testWithinYRange() {
-		assertEquals(true, j1.withinYRange(p1));
-		assertEquals(false, j3.withinYRange(p1));
+		assertEquals(true, j1.withinYRangePla(p1));
+		assertEquals(false, j3.withinYRangePla(p1));
 	}
 	
 	@Test
 	void testIsCollision() {
-		assertEquals(true, j1.isCollision(p1));
-		assertEquals(false, j3.isCollision(p1));
+		assertEquals(true, j1.isCollisionPla(p1));
+		assertEquals(false, j3.isCollisionPla(p1));
 	}
 	
 	@Test

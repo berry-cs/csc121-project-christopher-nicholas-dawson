@@ -3,6 +3,7 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
+
 interface ILoP {
 
 	public PApplet draws(PApplet c);
@@ -106,12 +107,14 @@ class ConsLoP implements ILoP {
 
 }
 
+
 /** Represents a still platform*/
+
 public class Platform {
 
-	private Posn posn;
-	private int width;
-	private int height;
+	Posn posn;
+	 int width;
+	 int height;
 	private String color;
 
 
@@ -121,6 +124,7 @@ public class Platform {
 		this.width = width;
 		this.height = height;
 		this.color = color;
+
 
 	}
 
@@ -139,10 +143,16 @@ public class Platform {
 		return height;
 	}
 
+
+		
+	 
+	
+	
+
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
 		Random rand = new Random();
-		int randomX = rand.nextInt(400 - 75);
+		int randomX = rand.nextInt(400 - 50);
 		this.posn = new Posn(randomX, ypos);
 		this.width =75;
 		this.height = 10;
