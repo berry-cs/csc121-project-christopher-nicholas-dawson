@@ -63,7 +63,7 @@ public class Jumper {
 
 
 
-	public Jumper Collider(Platform platform) {
+	public Jumper collider(Platform platform) {
 		if(this.isCollisionPla(platform)) {
 
 			return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
@@ -73,13 +73,13 @@ public class Jumper {
 	}
 
 
-	public boolean isCollisionlop(LoX<Platform> platforms) {
+	public boolean isCollisionLop(LoX<Platform> platforms) {
 
 		if (platforms.isEmpty()) {
 			return false;
 		} else if (this.isCollisionPla(platforms.getFirst())) {
 			return true;
-		} else if (this.isCollisionlop(platforms.getRest())){
+		} else if (this.isCollisionLop(platforms.getRest())){
 			return true;
 		} else {
 			return false;
@@ -97,12 +97,12 @@ public class Jumper {
 
 	boolean withinXRangePla(Platform platform) {
 		return this.loc.getX() + this.width >= platform.getPosn().getX() 
-				&& this.loc.x <= platform.posn.x + platform.width;
+				&& this.loc.getX() <= platform.getPosn().getX() + platform.getWidth();
 	}
 
 	boolean withinYRangePla(Platform platform) {
-		return this.loc.y + this.height >= platform.posn.y 
-				&& this.loc.y <= platform.posn.y + platform.height;
+		return this.loc.getY() + this.height >= platform.getPosn().getY() 
+				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
 
 	}
 	
@@ -115,13 +115,13 @@ public class Jumper {
 	}
 	
 	boolean withinXRangeOb(Obstacle obstacle) {
-		return this.loc.x + this.width >= obstacle.posn.x 
-				&& this.loc.x <= obstacle.posn.x + obstacle.width;
+		return this.loc.getX() + this.width >= obstacle.getPosn().getX() 
+				&& this.loc.getX() <= obstacle.getPosn().getX() + obstacle.getWidth();
 	}
 
 	boolean withinYRangeOb(Obstacle obstacle) {
-		return this.loc.y + this.height > obstacle.posn.y 
-				&& this.loc.y < obstacle.posn.y + obstacle.height;
+		return this.loc.getY() + this.height > obstacle.getPosn().getY() 
+				&& this.loc.getY() < obstacle.getPosn().getY() + obstacle.getHeight();
 	}
 	
 	public boolean isCollisionLoB(LoX<Obstacle> obstacles) {

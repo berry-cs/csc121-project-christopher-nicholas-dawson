@@ -1,8 +1,8 @@
 import java.util.Objects;
 
 public class Star {
-	Posn star;
-	int star_num;
+	private Posn star;
+	private int star_num;
 	
 	Star(Posn star, int star_num) {
 		super();

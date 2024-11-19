@@ -112,9 +112,9 @@ class ConsLoP implements ILoP {
 
 public class Platform {
 
-	Posn posn;
-	 int width;
-	 int height;
+	private Posn posn;
+	private int width;
+	private int height;
 	private String color;
 
 

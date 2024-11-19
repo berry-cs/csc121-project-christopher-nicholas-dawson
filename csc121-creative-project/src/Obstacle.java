@@ -7,44 +7,44 @@ import processing.core.PApplet;
 
 public class Obstacle {
 
-	Posn posn;
-	int width;
-	int height;
-	String color;
+	private Posn posn;
+	private int width;
+	private int height;
+	private String color;
 	
 	public Obstacle(Posn posn, int width, int height, String color) {
 		super();
-		this.posn = posn;
-		this.width = width;
-		this.height = height;
+		this.setPosn(posn);
+		this.setWidth(width);
+		this.setHeight(height);
 		this.color = color;
 	}
 	
 	public Obstacle(int ypos) {
 		Random rand = new Random();
 		int randomX = rand.nextInt(400 - 200);
-		this.posn = new Posn(randomX, ypos);
-		this.width = 35;
-		this.height = 35;
+		this.setPosn(new Posn(randomX, ypos));
+		this.setWidth(35);
+		this.setHeight(35);
 		this.color = "red";
 	}
 
 	
 	public PApplet draw(PApplet c) {
 		c.fill(255, 0, 0);
-		c.rect((int)this.posn.x, (int)this.posn.y, this.width, this.height, 28);
+		c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
 		return c;
 
 	}
 
 	@Override
 	public String toString() {
-		return "Obstacle [posn=" + posn + ", width=" + width + ", height=" + height + ", color=" + color + "]";
+		return "Obstacle [posn=" + getPosn() + ", width=" + getWidth() + ", height=" + getHeight() + ", color=" + color + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, height, posn, width);
+		return Objects.hash(color, getHeight(), getPosn(), getWidth());
 	}
 
 	@Override
@@ -56,8 +56,32 @@ public class Obstacle {
 		if (getClass() != obj.getClass())
 			return false;
 		Obstacle other = (Obstacle) obj;
-		return Objects.equals(color, other.color) && height == other.height && Objects.equals(posn, other.posn)
-				&& width == other.width;
+		return Objects.equals(color, other.color) && getHeight() == other.getHeight() && Objects.equals(getPosn(), other.getPosn())
+				&& getWidth() == other.getWidth();
+	}
+
+	public Posn getPosn() {
+		return posn;
+	}
+
+	public void setPosn(Posn posn) {
+		this.posn = posn;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
 	}
 	
 	
