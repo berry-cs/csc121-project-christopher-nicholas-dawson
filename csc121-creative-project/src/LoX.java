@@ -3,14 +3,19 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
+// represents a generic list-like structure with basic operations
 public interface LoX<T> {
 
+	// draws all elements of the list
 	public PApplet draws(PApplet c);
 
+	// retrieves the first element in the list
 	public T getFirst();
 
+	// retrieves the rest of the list
 	public LoX<T> getRest();
 
+	// checks if the list is empty
 	public boolean isEmpty();
 
 }

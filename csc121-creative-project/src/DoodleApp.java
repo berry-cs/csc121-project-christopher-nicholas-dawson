@@ -8,7 +8,7 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 
 	private IWorld w;
 
-	
+
 	public static final int platwid = 75;
 	public static final int plahgt = 10;
 	public static final String placol = "blue";
@@ -18,24 +18,25 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 		this.size(400, 400);
 	}
 
-	
-	   public void setup() {
-        w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 15, 15),
-        		 new Cons<Platform> 
-        		 (new Platform(new Posn(200, 310), platwid, plahgt, placol),
-        				new Cons<Platform> 
-        				(new Platform(new Posn(250, 250), platwid, plahgt, placol), 
-        				new Cons<Platform>
-        		        		(new Platform(new Posn(300, 150), platwid, plahgt, placol),
-        		        				new Cons<Platform>
-        		        				(new Platform(new Posn(200, 100), platwid, plahgt, placol),
-        		        						new Cons<Platform>
-                		        				(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
-        		 new Cons<Obstacle>
-        		 (new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
-        		 0, new Score()); 
-    } 
 
+	public void setup() {
+		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 15, 15),
+				new Cons<Platform> 
+		(new Platform(new Posn(200, 310), platwid, plahgt, placol),
+				new Cons<Platform> 
+		(new Platform(new Posn(250, 250), platwid, plahgt, placol), 
+				new Cons<Platform>
+		(new Platform(new Posn(300, 150), platwid, plahgt, placol),
+				new Cons<Platform>
+		(new Platform(new Posn(200, 100), platwid, plahgt, placol),
+				new Cons<Platform>
+		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
+		new Cons<Obstacle>
+		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
+		0, new Score()); 
+	}
+
+	// draws the application
 	public void draw() {
 		w = w.update();
 		w.draw(this);

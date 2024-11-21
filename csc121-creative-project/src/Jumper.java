@@ -19,6 +19,7 @@ public class Jumper {
 		this.height = height;
 	}
 
+	// draws the jumper
 	public PApplet draw(PApplet c) {
 		c.imageMode(PApplet.CENTER);
 		c.pushMatrix();
@@ -47,22 +48,23 @@ public class Jumper {
 		return Objects.equals(loc, other.loc) && Objects.equals(vel, other.vel);
 	}
 
+	// returns a new jumper with its velocity adjusted by the given offset
 	public Jumper translateVel(Posn offset) {
 		return new Jumper(this.loc, new Posn(this.vel.getX() + offset.getX(), this.vel.getY() + offset.getY()), this.width, this.height);
 	}
 
-
+	// returns a new jumper with its position updated based on its velocity and simulates gravity
 	public Jumper move() {
 		return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
 	}
 
-
+	// returns a new jumper with an upward velocity boost, simulating a jump
 	public Jumper boost() {
 		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height); 
 	} 
 
 
-
+	// handles collision with a platform. If a collision occurs, resets velocity to zero
 	public Jumper collider(Platform platform) {
 		if(this.isCollisionPla(platform)) {
 
@@ -72,7 +74,7 @@ public class Jumper {
 		}
 	}
 
-
+	// checks if the jumper is colliding with an platform in the given list
 	public boolean isCollisionLop(LoX<Platform> platforms) {
 
 		if (platforms.isEmpty()) {
@@ -86,6 +88,7 @@ public class Jumper {
 		}
 	}
 
+	// checks if the jumper is colliding with a specific platform
 	public boolean isCollisionPla(Platform platform) {
 		if (withinXRangePla(platform) && withinYRangePla(platform)) {
 			return true;
@@ -94,18 +97,20 @@ public class Jumper {
 		}
 	}
 
-
+	// checks if the jumper's x-coordinate overlaps with a given platform
 	boolean withinXRangePla(Platform platform) {
 		return this.loc.getX() + this.width >= platform.getPosn().getX() 
 				&& this.loc.getX() <= platform.getPosn().getX() + platform.getWidth();
 	}
 
+	// checks if the jumper's y-coordinate overlaps with a given platform
 	boolean withinYRangePla(Platform platform) {
 		return this.loc.getY() + this.height >= platform.getPosn().getY() 
 				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
 
 	}
-	
+
+	// checks if the jumper is colliding with a specific obstacle
 	public boolean isCollisionOb(Obstacle obstacle) {
 		if (withinXRangeOb(obstacle) && withinYRangeOb(obstacle)) {
 			return true;
@@ -113,17 +118,20 @@ public class Jumper {
 			return false;
 		}
 	}
-	
+
+	// checks if the jumper's x-coordinate overlaps with a given obstacle
 	boolean withinXRangeOb(Obstacle obstacle) {
 		return this.loc.getX() + this.width >= obstacle.getPosn().getX() 
 				&& this.loc.getX() <= obstacle.getPosn().getX() + obstacle.getWidth();
 	}
 
+	// checks if the jumper's y-coordinate overlaps with a given obstacle
 	boolean withinYRangeOb(Obstacle obstacle) {
 		return this.loc.getY() + this.height > obstacle.getPosn().getY() 
 				&& this.loc.getY() < obstacle.getPosn().getY() + obstacle.getHeight();
 	}
-	
+
+	// checks if the jumper is colliding with any obstacle sin the given list
 	public boolean isCollisionLoB(LoX<Obstacle> obstacles) {
 		if (obstacles.isEmpty()) {
 			return false;

@@ -14,8 +14,8 @@ class DoodleWorldTest {
 	Platform p2 = new Platform(new Posn(100, 400), 100, 20, "blue");
 	Platform p3 = new Platform(new Posn(400, 500), 80, 20, "blue");
 	LoX<Platform> pl1 = new Cons<Platform>(p1, new Cons<Platform>(p2, new Cons<Platform>(p3, new MT<Platform>())));
-	
-	
+
+
 	Obstacle ob1 = new Obstacle(new Posn(50,50), 10, 4, "red");
 
 	Obstacle ob2 = new Obstacle(new Posn(100, 400), 100, 20, "red");
@@ -43,11 +43,11 @@ class DoodleWorldTest {
 		assertEquals( 400, w1.bottomY() );
 		assertEquals( 405, w2.bottomY() );
 	}
-	
-	
+
+
 	@Test
 	void testReadyForNewPlatform() {
-		
+
 		int count = 0;
 		for (int i = 0; i < 1000; i++) {		 // repeat 1000 times
 			if (w1.readyForNewPlatform()) {
@@ -56,24 +56,24 @@ class DoodleWorldTest {
 				// do nothing
 			}
 		}
-// hard to test because it's random		
-//		assertEquals( true,  count > 9 );
-//		assertEquals( true, count >  11);
-		
+		// hard to test because it's random		
+		//		assertEquals( true,  count > 9 );
+		//		assertEquals( true, count >  11);
+
 	}
-	
+
 	@Test 
 	void testActualScrollAmount() {
 		assertEquals(5, w2.actualScrollAmount());
 		assertEquals(0, w1.actualScrollAmount());
 	}
-	
+
 	@Test
 	void testTopY() {
 		assertEquals(-5, w2.topY());
 		assertEquals(0, w1.topY());
 	}
-	
+
 	@Test
 	void testBottomY() {
 		assertEquals(405, w2.bottomY());
