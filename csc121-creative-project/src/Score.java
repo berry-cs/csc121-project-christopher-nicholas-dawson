@@ -3,20 +3,20 @@ import java.util.Objects;
 import processing.core.PApplet;
 
 public class Score {
-
-	//	int score = 0;
 	private int points;
-	
+
+	// initializes the score to 0
 	Score() {
 		this.points = 0;
 	}
-	
-	
-	
+
+
+	// increments the score by a given amount
 	public void increment(int amount) {
 		this.points += amount;
 	}
-	
+
+	// draws the current score on the given canvas at the top-right corner
 	public void draw(PApplet c) {
 		c.fill(0);
 		c.textSize(18);
@@ -24,13 +24,14 @@ public class Score {
 		c.textAlign(PApplet.RIGHT, PApplet.TOP);
 		c.text(scoreText, c.width - 10, 10);
 	}
-	
+
+	// returns the current score points
 	public int getPoints() {
 		return points;
 	}
-	
-	
-	
+
+
+	// initializes the score to the given points value
 	public Score(int points) {
 		super();
 		this.points = points;

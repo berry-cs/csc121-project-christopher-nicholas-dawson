@@ -2,6 +2,7 @@ import java.util.Objects;
 
 import processing.core.PApplet;
 
+// represents the jumper in the doodleworld
 public class Jumper {
 	private Posn loc;
 	private Posn vel;

@@ -10,7 +10,7 @@ class PosnTest {
 	Posn p4 = new Posn(20, 0);
 	Posn p5 = new Posn(-20, -50);
 	Posn p6 = new Posn(2.5, 10.5);
-		
+
 
 	@Test
 	void testDistanceTo() {
@@ -21,19 +21,19 @@ class PosnTest {
 		assertEquals(80.6, p4.distanceTo(p1), 0.1);
 		assertEquals(0,   p3.distanceTo(p3));
 	}
-	
+
 	@Test
 	void testGetX() {
 		assertEquals(2.5, p6.getX());
 		assertEquals(-20, p5.getX());
 	}
-	
+
 	@Test
 	void testGetY() {
 		assertEquals(10.5, p6.getY());
 		assertEquals(-50, p5.getY());
 	}
-	
+
 	@Test
 	void testScale() {
 		assertEquals(new Posn(10, 1), p1.scale(.1));
@@ -41,7 +41,7 @@ class PosnTest {
 		assertEquals(new Posn(6, 15), p2.scale(.3));
 		assertEquals(p5, p2.scale(-1));
 	}
-	
+
 	@Test
 	void testTranslate() {
 		assertEquals(new Posn(300, 20), p1.translate(p3));
@@ -54,7 +54,7 @@ class PosnTest {
 		assertEquals(new Posn(40, 100), p5.diff(p2));
 		// order matters...
 		assertEquals(new Posn(-40, -100), p2.diff(p5));
-		
+
 		assertEquals(new Posn(0, 0), p1.diff(p1));
 		assertEquals(new Posn(-180, 40), p3.diff(p2));
 	}

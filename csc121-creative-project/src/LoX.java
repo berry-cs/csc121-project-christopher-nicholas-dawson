@@ -20,21 +20,26 @@ public interface LoX<T> {
 
 }
 
+// represents an empty list in the LoX structure
 class MT<T> implements LoX<T> {
 	MT() {}
 
+	// does nothing and returns the given canvas
 	public PApplet draws(PApplet c) {
 		return c;
 	}
 
+	// returns true, indicating that this is an empty list
 	public boolean isEmpty() {
 		return true;
 	}
 
+	// returns null, as there is no first element in an empty list
 	public T getFirst() {
 		return null;
 	}
 
+	// returns the empty list itself, as there is no rest in an empty list
 	public LoX<T> getRest() {
 		return this;
 	}
@@ -55,6 +60,7 @@ class MT<T> implements LoX<T> {
 	}
 }
 
+// represents a non-empty list in the LoX structure, holding an element and the rest of the list
 class Cons<T> implements LoX<T> {
 	T first;
 	LoX<T> rest;
@@ -65,7 +71,7 @@ class Cons<T> implements LoX<T> {
 		this.rest = rest;
 	}
 
-
+	// draws all elements of the list
 	public PApplet draws(PApplet c) {
 		if (first.getClass() == Platform.class) {
 			((Platform) first).draw(c);
@@ -76,14 +82,17 @@ class Cons<T> implements LoX<T> {
 		return c;
 	} 
 
+	// returns false, indicating that this is not an empty list
 	public boolean isEmpty() {
 		return false;
 	}
 
+	// returns the first element of the list
 	public T getFirst() {
 		return first;
 	}
 
+	// return the rest of the list
 	public LoX<T> getRest() {
 		return rest;
 	}

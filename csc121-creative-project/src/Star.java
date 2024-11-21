@@ -3,7 +3,7 @@ import java.util.Objects;
 public class Star {
 	private Posn star;
 	private int star_num;
-	
+
 	Star(Posn star, int star_num) {
 		super();
 		this.star = star;
@@ -26,7 +26,7 @@ public class Star {
 		Star other = (Star) obj;
 		return Objects.equals(star, other.star) && star_num == other.star_num;
 	}
-	
-	
-	
+
+
+
 }

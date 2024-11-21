@@ -3,26 +3,31 @@ import java.util.Random;
 
 import processing.core.PApplet;
 
-
+// represents a list of Platform objects
 interface ILoP {
 
+	// draws all platforms in the list
 	public PApplet draws(PApplet c);
 
+	// retrieves the first platform in the list
 	public Platform getFirst();
-
+	// retrieves the rest of the list
 	public ILoP getRest();
-
+	// checks if the list is empty
 	public boolean isEmpty(); 
 
 }
 
+// represents an empty list of platforms
 class MTLoP implements ILoP {
 	MTLoP() {}
 
+	// does nothing and returns the given canvas
 	public PApplet draws(PApplet c) {
 		return c;
 	}
 
+	// indicates an empty list
 	public boolean isEmpty() {
 		return true;
 	}
@@ -32,6 +37,7 @@ class MTLoP implements ILoP {
 		return new Platform(new Posn(0, 0), 0, 0, "blue");
 	}
 
+	// return the empty list itself
 	public ILoP getRest() {
 		return this;
 	}
@@ -54,7 +60,7 @@ class MTLoP implements ILoP {
 }
 
 
-
+// represents a non-empty list of platforms
 class ConsLoP implements ILoP {
 	private Platform first;
 	private ILoP rest;
@@ -63,21 +69,21 @@ class ConsLoP implements ILoP {
 		this.first = first;
 		this.rest = rest;
 	}
-
+	// draws the first platform and the rest of the list 
 	public PApplet draws(PApplet c) {
 		first.draw(c);
 		rest.draws(c);
 		return c;
 	}
-
+	// indicates this is not an empty list
 	public boolean isEmpty() {
 		return false;
 	}
-
+	// returns the first platform in the list
 	public Platform getFirst() {
 		return first;
 	}
-
+	// returns the rest of the platforms in the list
 	public ILoP getRest() {
 		return rest;
 	}
@@ -144,10 +150,10 @@ public class Platform {
 	}
 
 
-		
-	 
-	
-	
+
+
+
+
 
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {

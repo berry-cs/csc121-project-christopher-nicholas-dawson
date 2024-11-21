@@ -11,7 +11,7 @@ public class Obstacle {
 	private int width;
 	private int height;
 	private String color;
-	
+
 	public Obstacle(Posn posn, int width, int height, String color) {
 		super();
 		this.setPosn(posn);
@@ -19,7 +19,7 @@ public class Obstacle {
 		this.setHeight(height);
 		this.color = color;
 	}
-	
+
 	public Obstacle(int ypos) {
 		Random rand = new Random();
 		int randomX = rand.nextInt(400 - 200);
@@ -29,7 +29,7 @@ public class Obstacle {
 		this.color = "red";
 	}
 
-	
+	// draws the obstacle
 	public PApplet draw(PApplet c) {
 		c.fill(255, 0, 0);
 		c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
@@ -59,31 +59,31 @@ public class Obstacle {
 		return Objects.equals(color, other.color) && getHeight() == other.getHeight() && Objects.equals(getPosn(), other.getPosn())
 				&& getWidth() == other.getWidth();
 	}
-
+	// returns a posn
 	public Posn getPosn() {
 		return posn;
 	}
-
+	// returns the given posn
 	public void setPosn(Posn posn) {
 		this.posn = posn;
 	}
-
+	// returns a width
 	public int getWidth() {
 		return width;
 	}
-
+	// returns a given width
 	public void setWidth(int width) {
 		this.width = width;
 	}
-
+	// returns a height
 	public int getHeight() {
 		return height;
 	}
-
+	// return a given height
 	public void setHeight(int height) {
 		this.height = height;
 	}
-	
-	
+
+
 
 }
