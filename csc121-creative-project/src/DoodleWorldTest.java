@@ -32,7 +32,7 @@ class DoodleWorldTest {
 	void testKeyPressed() {
 		assertEquals( w1, w1.keyPressed(new KeyEvent(null, 0, 0, 0, 'c', 'c')));
 
-		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, null), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
+	//	assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, null), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
 		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, new Score() ), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
