@@ -12,6 +12,7 @@ public class Obstacle {
 	private int width;
 	private int height;
 	private String color;
+	private static final int SIZE = 400;
 
 	public Obstacle(Posn posn, int width, int height, String color) {
 		super();
@@ -20,10 +21,11 @@ public class Obstacle {
 		this.height = height;
 		this.color = color;
 	}
- 
+	
+	
 	public Obstacle(int ypos) {
 		Random rand = new Random();
-		int randomX = rand.nextInt(400 - 200);
+		int randomX = rand.nextInt(SIZE - 200);
 		this.posn = (new Posn(randomX, ypos));
 		this.width = 35;
 		this.height = 35;

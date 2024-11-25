@@ -11,6 +11,7 @@ public class Platform {
 	private int width;
 	private int height;
 	private String color;
+	private static final int SIZE = 400;
 
 
 	public Platform(Posn posn, int width, int height, String color) {
@@ -24,7 +25,7 @@ public class Platform {
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
 		Random rand = new Random();
-		int randomX = rand.nextInt(400 - 50);
+		int randomX = rand.nextInt(SIZE - 50);
 		this.posn = new Posn(randomX, ypos);
 		this.width = 75;
 		this.height = 10;

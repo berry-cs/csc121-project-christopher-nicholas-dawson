@@ -15,6 +15,7 @@ public class DoodleWorld implements IWorld {
 	
 	private boolean moveLeft = false;
 	private boolean moveRight = false;
+	private static final int SIZE = 400;
 	
 	
 
@@ -69,12 +70,12 @@ public class DoodleWorld implements IWorld {
 
 	/** decide whether a new platform should be generated */
 	public boolean readyForNewPlatform() {
-		return Math.random() < 0.02;
+		return Math.random() < 0.02; // 2 percent chance a platform generates
 	}
 
 	// decide whether a new obstacle should be generated
 	public boolean readyForNewObstacle() {
-		return Math.random() < 0.005;
+		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
 	}
 
 	// updates the state of our doodleworld
@@ -172,6 +173,6 @@ public class DoodleWorld implements IWorld {
 
 	/** produce the y coordinate of the bottom of the window */
 	public int bottomY() {
-		return 400 + actualScrollAmount();
+		return SIZE + actualScrollAmount();
 	}
 }

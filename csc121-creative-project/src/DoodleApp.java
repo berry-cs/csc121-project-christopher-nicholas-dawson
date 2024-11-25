@@ -9,13 +9,13 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	private IWorld w;
 
 
-	public static final int platwid = 75;
-	public static final int plahgt = 10;
-	public static final String placol = "blue";
-
+	private static final int platwid = 75;
+	private static final int plahgt = 10;
+	private static final String placol = "blue";
+    private static final int SIZE = 400;
  
 	public void settings() { 
-		this.size(400, 400);
+		this.size(SIZE, SIZE);
 //		PImage img;
 //		img = loadImage("doodle_bg.png");
 //		background(img);

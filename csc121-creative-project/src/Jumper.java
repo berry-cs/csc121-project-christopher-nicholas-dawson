@@ -9,9 +9,7 @@ public class Jumper {
 	private Posn vel;
 	private int width;
 	private int height;
-	//velocity
-
-	static double GRAVITY = .45;
+	private static double GRAVITY = .45;
 
 	Jumper(Posn loc, Posn vel, int width, int height) {
 		super();
@@ -20,6 +18,8 @@ public class Jumper {
 		this.width = width;
 		this.height = height;
 	}
+	
+	private static final int SIZE = 400;
 
 //	// draws the jumper
 //	public PApplet draw(PApplet c) {
@@ -170,7 +170,7 @@ public class Jumper {
 
 	// determines if this jumper is at the bottom of the screen or not
 	public Boolean atBottom(int scrollamt) {
-		return this.loc.getY() >= 400 - scrollamt;
+		return this.loc.getY() >= SIZE - scrollamt;
 	}
 
 	@Override
