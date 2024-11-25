@@ -10,6 +10,7 @@ public class DoodleWorld implements IWorld {
 	private LoX<Platform> platforms;
 	private Star star;
 	private LoX<Obstacle> obstacles;
+	private LoX<Star> stars;
 	private Score score;
 	private int scrollAmount;
 	
@@ -20,10 +21,11 @@ public class DoodleWorld implements IWorld {
 	
 
 
-	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
+	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles,LoX<Star> stars, int scrollAmount, Score score) {
 		this.jumper = jumper;
 		this.platforms = platforms;
 		this.obstacles = obstacles;
+		this.stars = stars;
 		this.scrollAmount = scrollAmount;
 		this.score = score; // Use the score parameter directly
 	} 
@@ -78,6 +80,9 @@ public class DoodleWorld implements IWorld {
 		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
 	}
 
+	public boolean readyForNewStar() {
+		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
+	}
 	// updates the state of our doodleworld
 	public IWorld update() { 
 		Jumper newJumper = this.jumper.move();
@@ -116,20 +121,27 @@ public class DoodleWorld implements IWorld {
 		} else {
 			newObstacles = this.obstacles;
 		}
+		
+		LoX<Star> newStars;
+		if (readyForNewStar()) {
+			newStars = new Cons<Star>(new Star(topY()), this.stars);
+		} else {
+			newStars = this.stars;
+		}
 
-		return new DoodleWorld(newJumper, newPlatforms, newObstacles, this.scrollAmount + 80, this.score); 
+		return new DoodleWorld(newJumper, newPlatforms, newObstacles, newStars,this.scrollAmount + 80, this.score); 
 	}
 
 	// jumper boosts if spacebar is pressed, jumper moves to the left with press of left arrow, right with press of right arrow
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
-			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		} else {
 			return this;
 		}
