@@ -18,7 +18,7 @@ public class Star {
 	}
 	
 	public Star (int ypos) {
-		this( new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "red" );
+		this( new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "yellow" );
 	}
 	// draws the obstacle
 	public PApplet draw(PApplet c) {
