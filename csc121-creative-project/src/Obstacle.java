@@ -60,6 +60,7 @@ public class Obstacle {
 		return "Obstacle [posn=" + getPosn() + ", width=" + getWidth() + ", height=" + getHeight() + ", color=" + color + "]";
 	}
 
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(color, getHeight(), getPosn(), getWidth());
