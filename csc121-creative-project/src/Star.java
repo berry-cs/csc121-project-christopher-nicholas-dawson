@@ -8,6 +8,8 @@ public class Star {
 	private int width;
 	private int height;
 	private String color;
+	
+	private static final int SIZE = 400;
 
 	Star(Posn posn, int width, int height, String color) {
 		super();
@@ -18,7 +20,7 @@ public class Star {
 	}
 	
 	public Star (int ypos) {
-		this( new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "yellow" );
+		this( new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35, "yellow" );
 	}
 	// draws the obstacle
 	public PApplet draw(PApplet c) {
