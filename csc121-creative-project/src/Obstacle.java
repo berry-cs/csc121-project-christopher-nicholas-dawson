@@ -18,7 +18,7 @@ public class Obstacle {
 	public Obstacle(Posn posn, int width, int height, String color) {
 		super();
 		this.posn = posn;
-		this.width = width;
+		this.width = width; 
 		this.height = height;
 		this.color = color;
 	}

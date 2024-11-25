@@ -21,7 +21,7 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 //		background(img);
 	}
 	
-	
+	 
 
 
 	public void setup() {		
@@ -36,6 +36,8 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 		(new Platform(new Posn(200, 100), platwid, plahgt, placol),
 				new Cons<Platform>
 		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
+		new Cons<Star>
+		 (new Star(new Posn(350, 350), 20, 20, "yellow"), new MT<Star>()),
 		new Cons<Obstacle>
 		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
 		0, new Score()); 

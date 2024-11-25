@@ -13,9 +13,10 @@ public class DoodleWorld implements IWorld {
 	private Score score;
 	private int scrollAmount;
 
-	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
+	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Star> stars, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
 		this.jumper = jumper;
 		this.platforms = platforms;
+		this.stars = stars;
 		this.obstacles = obstacles;
 		this.scrollAmount = scrollAmount;
 		this.score = score; // Use the score parameter directly
@@ -23,13 +24,13 @@ public class DoodleWorld implements IWorld {
 
 	@Override
 	public String toString() {
-		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obstacles="
+		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", stars=" + stars + ", obstacles="
 				+ obstacles + ", score=" + score + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(jumper, obstacles, platforms, score, scrollAmount, star);
+		return Objects.hash(jumper, obstacles, platforms, score, scrollAmount, stars);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class DoodleWorld implements IWorld {
 		DoodleWorld other = (DoodleWorld) obj;
 		return Objects.equals(jumper, other.jumper) && Objects.equals(obstacles, other.obstacles)
 				&& Objects.equals(platforms, other.platforms) && Objects.equals(score, other.score)
-				&& scrollAmount == other.scrollAmount && Objects.equals(star, other.star);
+				&& scrollAmount == other.scrollAmount && Objects.equals(stars, other.stars);
 	}
 	// draws our doodleworld
 	public PApplet draw(PApplet c) {
@@ -68,6 +69,10 @@ public class DoodleWorld implements IWorld {
 
 	// decide whether a new obstacle should be generated
 	public boolean readyForNewObstacle() {
+		return Math.random() < 0.005;
+	}
+	
+	public boolean readyForNewStar() {
 		return Math.random() < 0.005;
 	}
 
@@ -102,6 +107,13 @@ public class DoodleWorld implements IWorld {
 		} else {
 			newPlatforms = this.platforms;
 		}
+		
+		LoX<Star> newStars;
+		if (readyForNewStar()) {
+			newStars = new Cons<Star>(new Star(topY()), this.stars);
+		} else {
+			newStars = this.stars;
+		}
 
 		LoX<Obstacle> newObstacles;
 		if (readyForNewObstacle()) {
@@ -110,19 +122,19 @@ public class DoodleWorld implements IWorld {
 			newObstacles = this.obstacles;
 		}
 
-		return new DoodleWorld(newJumper, newPlatforms, newObstacles, this.scrollAmount + 80, this.score); 
+		return new DoodleWorld(newJumper, newPlatforms, newStars, newObstacles, this.scrollAmount + 80, this.score); 
 	}
 
 	// jumper boosts if spacebar is pressed, jumper moves to the left with press of left arrow, right with press of right arrow
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
-			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.boost(), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else {
 			return this;
 		}
