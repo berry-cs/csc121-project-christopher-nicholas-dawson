@@ -63,9 +63,6 @@ public class Platform {
 
 
 
-
-
-
 	@Override
 	public String toString() {
 		return "Platform [posn=" + posn + ", width=" + width + ", height=" + height + ", color=" + color + "]";
