@@ -12,8 +12,20 @@ public class Star {
 	private int width;
 	private int height;
 	private String color;
+<<<<<<< HEAD
 
 
+=======
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> d077868ada466df6fa38f31d458ab899b687dc02
+	
+<<<<<<< HEAD
+	private static final int SIZE = 400;
+=======
+>>>>>>> 6497b7b5d2494e0f602da5932801ea78ebbc105d
 	static PImage starImg = null;
 	private static final int SIZE = 400;
 
