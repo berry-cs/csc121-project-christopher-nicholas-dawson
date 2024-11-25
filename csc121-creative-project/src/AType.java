@@ -1,10 +1,10 @@
 import processing.core.PApplet;
 
 public abstract class AType implements LoX {
-	Posn posn;
-	int width;
-	int height; 
-	String color;
+	private Posn posn;
+	private int width;
+	private int height; 
+	private String color;
 	 
 	AType(Posn posn, int width, int height, String color) {
 		super();
