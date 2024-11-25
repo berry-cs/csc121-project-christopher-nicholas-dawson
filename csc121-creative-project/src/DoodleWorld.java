@@ -8,16 +8,10 @@ public class DoodleWorld implements IWorld {
 
 	private Jumper jumper;
 	private LoX<Platform> platforms;
-	private Star star;
+	private LoX<Star> stars;
 	private LoX<Obstacle> obstacles;
 	private Score score;
 	private int scrollAmount;
-	
-	private boolean moveLeft = false;
-	private boolean moveRight = false;
-	
-	
-
 
 	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
 		this.jumper = jumper;
