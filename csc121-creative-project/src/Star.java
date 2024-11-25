@@ -12,6 +12,11 @@ public class Star {
 	private int width;
 	private int height;
 	private String color;
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> d077868ada466df6fa38f31d458ab899b687dc02
 	
 <<<<<<< HEAD
 	private static final int SIZE = 400;
