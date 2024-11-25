@@ -10,7 +10,7 @@ public class DoodleWorld implements IWorld {
 	private LoX<Platform> platforms;
 	private LoX<Star> stars;
 	private LoX<Obstacle> obstacles;
-	private LoX<Star> stars;
+	
 	private Score score;
 	private int scrollAmount;
 
@@ -34,13 +34,13 @@ public class DoodleWorld implements IWorld {
 
 	@Override
 	public String toString() {
-		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + star + ", obstacles="
+		return "DoodleWorld [jumper=" + jumper + ", platforms=" + platforms + ", star=" + stars + ", obstacles="
 				+ obstacles + ", score=" + score + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(jumper, obstacles, platforms, score, scrollAmount, star);
+		return Objects.hash(jumper, obstacles, platforms, score, scrollAmount, stars);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class DoodleWorld implements IWorld {
 		DoodleWorld other = (DoodleWorld) obj;
 		return Objects.equals(jumper, other.jumper) && Objects.equals(obstacles, other.obstacles)
 				&& Objects.equals(platforms, other.platforms) && Objects.equals(score, other.score)
-				&& scrollAmount == other.scrollAmount && Objects.equals(star, other.star);
+				&& scrollAmount == other.scrollAmount && Objects.equals(stars, other.stars);
 	}
 	// draws our doodleworld
 	public PApplet draw(PApplet c) {
