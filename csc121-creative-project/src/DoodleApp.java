@@ -13,14 +13,19 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	public static final int plahgt = 10;
 	public static final String placol = "blue";
 
-
+ 
 	public void settings() { 
 		this.size(400, 400);
+//		PImage img;
+//		img = loadImage("doodle_bg.png");
+//		background(img);
 	}
+	
+	
 
 
-	public void setup() {
-		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 15, 15),
+	public void setup() {		
+		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 17, 17),
 				new Cons<Platform> 
 		(new Platform(new Posn(200, 310), platwid, plahgt, placol),
 				new Cons<Platform> 

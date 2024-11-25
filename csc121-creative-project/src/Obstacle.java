@@ -2,11 +2,12 @@ import java.util.Objects;
 import java.util.Random;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 /** Represents a still obstacle*/
 
 public class Obstacle {
-
+ 
 	private Posn posn;
 	private int width;
 	private int height;
@@ -14,29 +15,46 @@ public class Obstacle {
 
 	public Obstacle(Posn posn, int width, int height, String color) {
 		super();
-		this.setPosn(posn);
-		this.setWidth(width);
-		this.setHeight(height);
+		this.posn = posn;
+		this.width = width;
+		this.height = height;
 		this.color = color;
 	}
-
+ 
 	public Obstacle(int ypos) {
 		Random rand = new Random();
 		int randomX = rand.nextInt(400 - 200);
-		this.setPosn(new Posn(randomX, ypos));
-		this.setWidth(35);
-		this.setHeight(35);
+		this.posn = (new Posn(randomX, ypos));
+		this.width = 35;
+		this.height = 35;
 		this.color = "red";
 	}
 
 	// draws the obstacle
 	public PApplet draw(PApplet c) {
+//	    c.imageMode(PApplet.CENTER);
+//	    PImage monsterImg = c.loadImage("monster.png");
+//	    float scaledWidth = monsterImg.width * 0.2f; 
+//	    float scaledHeight = monsterImg.height * 0.2f; 
+//	    c.image(monsterImg, (float)this.posn.getX(), (float)this.posn.getY(), scaledWidth, scaledHeight);
 		c.fill(255, 0, 0);
 		c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
 		return c;
-
 	}
-
+	
+	// returns a posn
+	public Posn getPosn() {
+		return posn;
+	}
+	// returns a width
+	public int getWidth() {
+		return width;
+	}
+	// returns a height
+	public int getHeight() {
+		return height;
+	}
+ 
 	@Override
 	public String toString() {
 		return "Obstacle [posn=" + getPosn() + ", width=" + getWidth() + ", height=" + getHeight() + ", color=" + color + "]";
@@ -59,31 +77,5 @@ public class Obstacle {
 		return Objects.equals(color, other.color) && getHeight() == other.getHeight() && Objects.equals(getPosn(), other.getPosn())
 				&& getWidth() == other.getWidth();
 	}
-	// returns a posn
-	public Posn getPosn() {
-		return posn;
-	}
-	// returns the given posn
-	public void setPosn(Posn posn) {
-		this.posn = posn;
-	}
-	// returns a width
-	public int getWidth() {
-		return width;
-	}
-	// returns a given width
-	public void setWidth(int width) {
-		this.width = width;
-	}
-	// returns a height
-	public int getHeight() {
-		return height;
-	}
-	// return a given height
-	public void setHeight(int height) {
-		this.height = height;
-	}
-
-
 
 }

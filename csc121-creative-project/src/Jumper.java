@@ -1,6 +1,7 @@
 import java.util.Objects;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 // represents the jumper in the doodleworld
 public class Jumper {
@@ -20,16 +21,25 @@ public class Jumper {
 		this.height = height;
 	}
 
-	// draws the jumper
+//	// draws the jumper
+//	public PApplet draw(PApplet c) {
+//		c.imageMode(PApplet.CENTER);
+//		c.pushMatrix();
+//		c.scale(.25f);
+//		c.image(c.loadImage("Jumper.png"), (float)this.loc.getX(), (float)this.loc.getY());
+//		// c.fill(0, 0,255);
+//		// c.ellipse((int)this.loc.getX(), (int)this.loc.getY(), this.width, this.height);
+//		c.popMatrix();
+//		return c;
+//	}
+	
 	public PApplet draw(PApplet c) {
-		c.imageMode(PApplet.CENTER);
-		c.pushMatrix();
-		//c.scale(.25f);
-		// c.image(c.loadImage("Jumper.png"), this.loc.getX(), this.loc.getY());
-		c.fill(0, 0,255);
-		c.ellipse((int)this.loc.getX(), (int)this.loc.getY(), this.width, this.height);
-		c.popMatrix();
-		return c;
+	    c.imageMode(PApplet.CENTER);
+	    PImage jumperImg = c.loadImage("Jumper2.png");
+	    float scaledWidth = jumperImg.width * 0.2f; 
+	    float scaledHeight = jumperImg.height * 0.2f; 
+	    c.image(jumperImg, (float)this.loc.getX(), (float)this.loc.getY(), scaledWidth, scaledHeight);
+	    return c;
 	}
 
 	@Override
@@ -70,7 +80,7 @@ public class Jumper {
 		if(this.isCollisionPla(platform)) {
 
 			return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
-		}else {
+		} else {
 			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
 		}
 	}
@@ -97,20 +107,7 @@ public class Jumper {
 			return false;
 		}
 	}
-
-	// checks if the jumper's x-coordinate overlaps with a given platform
-	boolean withinXRangePla(Platform platform) {
-		return this.loc.getX() + this.width >= platform.getPosn().getX() 
-				&& this.loc.getX() <= platform.getPosn().getX() + platform.getWidth();
-	}
-
-	// checks if the jumper's y-coordinate overlaps with a given platform
-	boolean withinYRangePla(Platform platform) {
-		return this.loc.getY() + this.height >= platform.getPosn().getY() 
-				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
-
-	}
-
+	
 	// checks if the jumper is colliding with a specific obstacle
 	public boolean isCollisionOb(Obstacle obstacle) {
 		if (withinXRangeOb(obstacle) && withinYRangeOb(obstacle)) {
@@ -118,6 +115,19 @@ public class Jumper {
 		} else {
 			return false;
 		}
+	}
+
+	// checks if the jumper's x-coordinate overlaps with a given platform
+	boolean withinXRangePla(Platform platform) {
+		return this.loc.getX() + this.width >= platform.getPosn().getX() 
+			&& this.loc.getX() <= platform.getPosn().getX() + platform.getWidth();
+	}
+
+	// checks if the jumper's y-coordinate overlaps with a given platform
+	boolean withinYRangePla(Platform platform) {
+		return this.loc.getY() + this.height >= platform.getPosn().getY() 
+				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
+ 
 	}
 
 	// checks if the jumper's x-coordinate overlaps with a given obstacle
@@ -128,8 +138,8 @@ public class Jumper {
 
 	// checks if the jumper's y-coordinate overlaps with a given obstacle
 	boolean withinYRangeOb(Obstacle obstacle) {
-		return this.loc.getY() + this.height > obstacle.getPosn().getY() 
-				&& this.loc.getY() < obstacle.getPosn().getY() + obstacle.getHeight();
+		return this.loc.getY() + this.height >= obstacle.getPosn().getY() 
+				&& this.loc.getY() <= obstacle.getPosn().getY() + obstacle.getHeight();
 	}
 
 	// checks if the jumper is colliding with any obstacle sin the given list

@@ -12,6 +12,11 @@ public class DoodleWorld implements IWorld {
 	private LoX<Obstacle> obstacles;
 	private Score score;
 	private int scrollAmount;
+	
+	private boolean moveLeft = false;
+	private boolean moveRight = false;
+	
+	
 
 
 	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles, int scrollAmount, Score score) {
@@ -20,7 +25,7 @@ public class DoodleWorld implements IWorld {
 		this.obstacles = obstacles;
 		this.scrollAmount = scrollAmount;
 		this.score = score; // Use the score parameter directly
-	}
+	} 
 
 	@Override
 	public String toString() {
@@ -75,6 +80,14 @@ public class DoodleWorld implements IWorld {
 	// updates the state of our doodleworld
 	public IWorld update() { 
 		Jumper newJumper = this.jumper.move();
+		
+//		if (moveLeft) {
+//			newJumper = newJumper.translate(new Posn(-5, 0));
+//		}
+//		
+//		if (moveRight) {
+//			newJumper = newJumper.translate(new Posn(5, 0));
+//		}
 
 		if (this.jumper.isCollisionLop(platforms)) {
 			score.increment(100); // increase score by 100 points
@@ -120,6 +133,32 @@ public class DoodleWorld implements IWorld {
 			return this;
 		}
 	}
+	
+//	public DoodleWorld keyPressed(KeyEvent kev) {
+//		if (kev.getKey() == ' ') {  // space
+//			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.scrollAmount, this.score);
+//		} else if (kev.getKeyCode() == PApplet.LEFT) {
+//			moveLeft = true;
+//			return this;
+//		//	return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+//		} else if (kev.getKeyCode() == PApplet.RIGHT) {
+//			moveRight = true;
+//			return this;
+//		//	return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
+//		} else {
+//			return this;
+//		}
+//	}
+//	
+//	public DoodleWorld keyReleased(KeyEvent kev) {
+//		if (kev.getKeyCode() == PApplet.LEFT) {
+//			moveLeft = false;
+//		} else if (kev.getKeyCode() == PApplet.RIGHT) {
+//			moveRight = false;
+//		} 
+//			return this;
+//		}
+	
 
 	/** produces the actual scroll amount in window pixels */
 	public int actualScrollAmount() {
