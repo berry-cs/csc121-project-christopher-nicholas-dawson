@@ -37,7 +37,8 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 				new Cons<Platform>
 		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
 		new Cons<Obstacle>
-		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
+		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),new Cons<Star>
+		(new Star(new Posn(300, 300), 35, 35, "red"), new MT<Star>()),
 		0, new Score()); 
 	}
 
