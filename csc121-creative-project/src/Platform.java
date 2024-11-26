@@ -10,11 +10,10 @@ public class Platform {
 	private Posn posn;
 	private int width;
 	private int height;
-<<<<<<< HEAD
+
 	private String color;
 	private static final int SIZE = 400;
-=======
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
 
 
 	public Platform(Posn posn, int width, int height) {
@@ -26,16 +25,11 @@ public class Platform {
 	
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
-<<<<<<< HEAD
-		Random rand = new Random();
-		int randomX = rand.nextInt(SIZE - 50);
-		this.posn = new Posn(randomX, ypos);
-		this.width = 75;
-		this.height = 10;
-		this.color = "blue";
-=======
-		this(new Posn(new Random().nextInt(400 - 50), ypos), 75, 10);
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
+	
+
+		this(new Posn(new Random().nextInt(SIZE - 50), ypos), 75, 10);
+
 	}
 	
 	/** produce a visual platform */ 
@@ -60,7 +54,6 @@ public class Platform {
 		return height;
 	}
 
-<<<<<<< HEAD
 
 
 
@@ -70,8 +63,8 @@ public class Platform {
 
 
 
-=======
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
+
 	@Override
 	public String toString() {
 		return "Platform [posn=" + posn + ", width=" + width + ", height=" + height + "]";
