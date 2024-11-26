@@ -8,20 +8,18 @@ public class Star {
 	private Posn posn;
 	private int width;
 	private int height;
-	private String color;
 	
 	static PImage starImg = null;
 
-	Star(Posn posn, int width, int height, String color) {
+	Star(Posn posn, int width, int height) {
 		super();
 		this.posn = posn;
 		this.width = width;
 		this.height = height;
-		this.color = color;
 	}
 
 public Star(int ypos) {
-	this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "yellow");
+	this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35);
 }
 
 public PApplet draw(PApplet c) {
@@ -56,7 +54,7 @@ public int getHeight() {
 
 @Override
 public int hashCode() {
-	return Objects.hash(color, height, posn, width);
+	return Objects.hash(height, posn, width);
 }
 
 @Override
@@ -68,13 +66,12 @@ public boolean equals(Object obj) {
 	if (getClass() != obj.getClass())
 		return false;
 	Star other = (Star) obj;
-	return Objects.equals(color, other.color) && height == other.height && Objects.equals(posn, other.posn)
-			&& width == other.width;
+	return height == other.height && Objects.equals(posn, other.posn) && width == other.width;
 }
 
 @Override
 public String toString() {
-	return "Star [posn=" + posn + ", width=" + width + ", height=" + height + ", color=" + color + "]";
+	return "Star [posn=" + posn + ", width=" + width + ", height=" + height + "]";
 }
 
 }

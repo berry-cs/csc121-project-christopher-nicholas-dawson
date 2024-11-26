@@ -93,6 +93,10 @@ public class DoodleWorld implements IWorld {
 		if (this.jumper.atBottom(actualScrollAmount())) {
 			throw new RuntimeException("Game Over");
 		}
+		
+		if (this.jumper.isCollisionLoS(stars)) {
+			score.increment(200);
+		}
 
 		LoX<Platform> newPlatforms;
 		if (readyForNewPlatform()) {

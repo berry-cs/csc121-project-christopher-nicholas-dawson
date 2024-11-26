@@ -11,8 +11,6 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 
 	public static final int platwid = 75;
 	public static final int plahgt = 10;
-	public static final String placol = "blue";
-
  
 	public void settings() { 
 		this.size(400, 400);
@@ -27,19 +25,19 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	public void setup() {		
 		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 17, 17),
 				new Cons<Platform> 
-		(new Platform(new Posn(200, 310), platwid, plahgt, placol),
+		(new Platform(new Posn(200, 310), platwid, plahgt),
 				new Cons<Platform> 
-		(new Platform(new Posn(250, 250), platwid, plahgt, placol), 
+		(new Platform(new Posn(250, 250), platwid, plahgt), 
 				new Cons<Platform>
-		(new Platform(new Posn(300, 150), platwid, plahgt, placol),
+		(new Platform(new Posn(300, 150), platwid, plahgt),
 				new Cons<Platform>
-		(new Platform(new Posn(200, 100), platwid, plahgt, placol),
+		(new Platform(new Posn(200, 100), platwid, plahgt),
 				new Cons<Platform>
-		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
+		(new Platform(new Posn(200, 50), platwid, plahgt), new MT<Platform>()))))),
 		new Cons<Star>
-		 (new Star(new Posn(300, 300), 35, 35, "yellow"), new MT<Star>()),
+		 (new Star(new Posn(350, 250), 35, 35), new MT<Star>()),
 		new Cons<Obstacle>
-		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),
+		(new Obstacle(new Posn(300, 300), 35, 35), new MT<Obstacle>()),
 		0, new Score()); 
 	}
 

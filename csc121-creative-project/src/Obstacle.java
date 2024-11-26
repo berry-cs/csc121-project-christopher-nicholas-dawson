@@ -11,20 +11,18 @@ public class Obstacle {
 	private Posn posn;
 	private int width;
 	private int height;
-	private String color; 
 	
 	static PImage monsterImg = null;
 
-	public Obstacle(Posn posn, int width, int height, String color) {
+	public Obstacle(Posn posn, int width, int height) {
 		super();
 		this.posn = posn;
 		this.width = width; 
 		this.height = height;
-		this.color = color;
 	}
  
 	public Obstacle(int ypos) {
-		this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "red" );
+		this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35);
 		
 		/*
 		this.posn = (new Posn(randomX, ypos));
@@ -62,15 +60,10 @@ public class Obstacle {
 	public int getHeight() {
 		return height;
 	}
- 
-	@Override
-	public String toString() {
-		return "Obstacle [posn=" + getPosn() + ", width=" + getWidth() + ", height=" + getHeight() + ", color=" + color + "]";
-	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, getHeight(), getPosn(), getWidth());
+		return Objects.hash(height, posn, width);
 	}
 
 	@Override
@@ -82,8 +75,14 @@ public class Obstacle {
 		if (getClass() != obj.getClass())
 			return false;
 		Obstacle other = (Obstacle) obj;
-		return Objects.equals(color, other.color) && getHeight() == other.getHeight() && Objects.equals(getPosn(), other.getPosn())
-				&& getWidth() == other.getWidth();
+		return height == other.height && Objects.equals(posn, other.posn) && width == other.width;
 	}
+
+	@Override
+	public String toString() {
+		return "Obstacle [posn=" + posn + ", width=" + width + ", height=" + height + "]";
+	}
+ 
+
 
 }
