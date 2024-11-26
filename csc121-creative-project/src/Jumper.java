@@ -17,6 +17,7 @@ public class Jumper {
 		this.vel = vel;
 		this.width = width;
 		this.height = height;
+<<<<<<< HEAD
 	}
 	
 	private static final int SIZE = 400;
@@ -32,6 +33,9 @@ public class Jumper {
 //		c.popMatrix();
 //		return c;
 //	}
+=======
+	} 
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
 	
 	public PApplet draw(PApplet c) {
 	    c.imageMode(PApplet.CENTER);
@@ -116,6 +120,15 @@ public class Jumper {
 			return false;
 		}
 	}
+	
+	// checks if the jumper is colliding with a specific obstacle
+	public boolean isCollisionSta(Star star) {
+		if (withinXRangeSta(star) && withinYRangeSta(star)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 	// checks if the jumper's x-coordinate overlaps with a given platform
 	boolean withinXRangePla(Platform platform) {
@@ -141,7 +154,33 @@ public class Jumper {
 		return this.loc.getY() + this.height >= obstacle.getPosn().getY() 
 				&& this.loc.getY() <= obstacle.getPosn().getY() + obstacle.getHeight();
 	}
+	
+	// checks if the jumper's x-coordinate overlaps with a given obstacle
+	boolean withinXRangeSta(Star star) {
+		return this.loc.getX() + this.width >= star.getPosn().getX() 
+				&& this.loc.getX() <= star.getPosn().getX() + star.getWidth();
+	}
 
+	// checks if the jumper's y-coordinate overlaps with a given obstacle
+	boolean withinYRangeSta(Star star) {
+		return this.loc.getY() + this.height >= star.getPosn().getY() 
+				&& this.loc.getY() <= star.getPosn().getY() + star.getHeight();
+	}
+	
+	// checks if the jumper is colliding with any obstacle sin the given list
+	public boolean isCollisionLoS(LoX<Star> stars) {
+		if (stars.isEmpty()) {
+			return false;
+		} else if (this.isCollisionSta(stars.getFirst())) {
+			return true;
+		} else if (this.isCollisionLoS(stars.getRest())){
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	
 	// checks if the jumper is colliding with any obstacle sin the given list
 	public boolean isCollisionLoB(LoX<Obstacle> obstacles) {
 		if (obstacles.isEmpty()) {
