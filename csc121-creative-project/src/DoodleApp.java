@@ -9,15 +9,14 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	private IWorld w;
 
 
-<<<<<<< HEAD
+
 	private static final int platwid = 75;
 	private static final int plahgt = 10;
 	private static final String placol = "blue";
     private static final int SIZE = 400;
-=======
-	public static final int platwid = 75;
-	public static final int plahgt = 10;
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
+
+
  
 	public void settings() { 
 		this.size(SIZE, SIZE);
@@ -26,7 +25,7 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 //		background(img);
 	}
 	
-	
+
 
 
 	public void setup() {		
@@ -40,18 +39,15 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 				new Cons<Platform>
 		(new Platform(new Posn(200, 100), platwid, plahgt),
 				new Cons<Platform>
-<<<<<<< HEAD
-		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
-		new Cons<Obstacle>
-		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),new Cons<Star>
-		(new Star(new Posn(300, 300), 35, 35, "red"), new MT<Star>()),
-=======
+
+	
+
 		(new Platform(new Posn(200, 50), platwid, plahgt), new MT<Platform>()))))),
-		new Cons<Star>
-		 (new Star(new Posn(350, 250), 35, 35), new MT<Star>()),
 		new Cons<Obstacle>
 		(new Obstacle(new Posn(300, 300), 35, 35), new MT<Obstacle>()),
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+		new Cons<Star>
+		 (new Star(new Posn(350, 250), 35, 35), new MT<Star>()),
+
 		0, new Score()); 
 	}
 
