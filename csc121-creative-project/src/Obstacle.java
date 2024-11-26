@@ -11,16 +11,16 @@ public class Obstacle {
 	private Posn posn;
 	private int width;
 	private int height;
-<<<<<<< HEAD
+
 	private String color;
 
 	private static final int SIZE = 400;
     private static PImage monsterImg = null;
 
-=======
+
 	
-	static PImage monsterImg = null;
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+	
+
 
 	public Obstacle(Posn posn, int width, int height) {
 		super();
@@ -31,15 +31,12 @@ public class Obstacle {
 	
 	
 	public Obstacle(int ypos) {
-<<<<<<< HEAD
+
 
 		
 
-		this( new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35, "red" );
-=======
-		this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35);
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
-		
+		this(new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35);
+
 		/*
 >>>>>>> 1657e40b5346bd133403df568e2228a90a1ec3ed
 		this.posn = (new Posn(randomX, ypos));
