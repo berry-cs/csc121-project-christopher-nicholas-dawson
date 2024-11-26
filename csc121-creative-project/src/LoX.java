@@ -77,7 +77,9 @@ class Cons<T> implements LoX<T> {
 			((Platform) first).draw(c);
 		} else if (first.getClass() == Obstacle.class) {
 			((Obstacle) first).draw(c);
-		} 
+		} else if (first.getClass() == Star.class) {
+			((Star) first).draw(c);
+		}
 		rest.draws(c);
 		return c;
 	} 
