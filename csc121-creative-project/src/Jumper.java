@@ -20,18 +20,6 @@ public class Jumper {
 		this.width = width;
 		this.height = height;
 	}
-
-//	// draws the jumper
-//	public PApplet draw(PApplet c) {
-//		c.imageMode(PApplet.CENTER);
-//		c.pushMatrix();
-//		c.scale(.25f);
-//		c.image(c.loadImage("Jumper.png"), (float)this.loc.getX(), (float)this.loc.getY());
-//		// c.fill(0, 0,255);
-//		// c.ellipse((int)this.loc.getX(), (int)this.loc.getY(), this.width, this.height);
-//		c.popMatrix();
-//		return c;
-//	}
 	
 	public PApplet draw(PApplet c) {
 	    c.imageMode(PApplet.CENTER);

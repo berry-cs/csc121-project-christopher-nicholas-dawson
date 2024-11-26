@@ -52,6 +52,7 @@ public class DoodleWorld implements IWorld {
 		c.translate(0, actualScrollAmount());
 		this.jumper.draw(c);
 		this.platforms.draws(c);
+		this.stars.draws(c);
 		this.obstacles.draws(c);
 
 		c.translate(0, - actualScrollAmount());
@@ -73,20 +74,12 @@ public class DoodleWorld implements IWorld {
 	}
 	
 	public boolean readyForNewStar() {
-		return Math.random() < 0.005;
+		return Math.random() < 0.025;
 	}
 
 	// updates the state of our doodleworld
 	public IWorld update() { 
 		Jumper newJumper = this.jumper.move();
-		
-//		if (moveLeft) {
-//			newJumper = newJumper.translate(new Posn(-5, 0));
-//		}
-//		
-//		if (moveRight) {
-//			newJumper = newJumper.translate(new Posn(5, 0));
-//		}
 
 		if (this.jumper.isCollisionLop(platforms)) {
 			score.increment(100); // increase score by 100 points
@@ -131,41 +124,15 @@ public class DoodleWorld implements IWorld {
 			return new DoodleWorld(this.jumper.boost(), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else {
 			return this;
 		}
 	}
 	
-//	public DoodleWorld keyPressed(KeyEvent kev) {
-//		if (kev.getKey() == ' ') {  // space
-//			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.scrollAmount, this.score);
-//		} else if (kev.getKeyCode() == PApplet.LEFT) {
-//			moveLeft = true;
-//			return this;
-//		//	return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
-//		} else if (kev.getKeyCode() == PApplet.RIGHT) {
-//			moveRight = true;
-//			return this;
-//		//	return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.obstacles, this.scrollAmount, this.score);
-//		} else {
-//			return this;
-//		}
-//	}
-//	
-//	public DoodleWorld keyReleased(KeyEvent kev) {
-//		if (kev.getKeyCode() == PApplet.LEFT) {
-//			moveLeft = false;
-//		} else if (kev.getKeyCode() == PApplet.RIGHT) {
-//			moveRight = false;
-//		} 
-//			return this;
-//		}
-	
-
 	/** produces the actual scroll amount in window pixels */
 	public int actualScrollAmount() {
 		return (int) (scrollAmount / 100.0f);

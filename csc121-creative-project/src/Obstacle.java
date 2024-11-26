@@ -24,7 +24,7 @@ public class Obstacle {
 	}
  
 	public Obstacle(int ypos) {
-		this( new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "red" );
+		this(new Posn(new Random().nextInt(400 - 200), ypos), 35, 35, "red" );
 		
 		/*
 		this.posn = (new Posn(randomX, ypos));
