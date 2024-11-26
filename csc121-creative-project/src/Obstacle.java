@@ -11,7 +11,7 @@ public class Obstacle {
 	private Posn posn;
 	private int width;
 	private int height;
-	private String color;
+	private String color; 
 	
 	static PImage monsterImg = null;
 

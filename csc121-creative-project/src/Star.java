@@ -29,10 +29,12 @@ public PApplet draw(PApplet c) {
 		starImg = c.loadImage("star.png");
 	}
 	
+//	c.fill(255, 0, 0);
+//	c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
 	c.imageMode(PApplet.CENTER);
 	
-	float scaleWidth = starImg.width * 0.2f;
-	float scaleHeight = starImg.height * 0.2f;
+	float scaleWidth = starImg.width * 0.15f;
+	float scaleHeight = starImg.height * 0.15f;
 	c.image(starImg, (float)this.posn.getX(), (float)this.posn.getY(), scaleWidth, scaleHeight);
 	return c;
 }

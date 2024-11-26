@@ -74,7 +74,7 @@ public class DoodleWorld implements IWorld {
 	}
 	
 	public boolean readyForNewStar() {
-		return Math.random() < 0.025;
+		return Math.random() < 0.005;
 	}
 
 	// updates the state of our doodleworld
