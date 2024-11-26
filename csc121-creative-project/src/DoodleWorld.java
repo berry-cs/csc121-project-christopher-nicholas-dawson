@@ -87,20 +87,18 @@ public class DoodleWorld implements IWorld {
 
 	// decide whether a new obstacle should be generated
 	public boolean readyForNewObstacle() {
-<<<<<<< HEAD
+
 		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
-=======
-		return Math.random() < 0.005;
+
+
 	}
 
 	public boolean readyForNewStar() {
 		return Math.random() < 0.005;
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
 	}
 
-	public boolean readyForNewStar() {
-		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
-	}
+
 	// updates the state of our doodleworld
 	public IWorld update() { 
 		Jumper newJumper = this.jumper.move();
@@ -129,7 +127,7 @@ public class DoodleWorld implements IWorld {
 			newPlatforms = this.platforms;
 		}
 
-<<<<<<< HEAD
+
 		LoX<Obstacle> newObstacles;
 		if (readyForNewObstacle()) {
 			newObstacles = new Cons<Obstacle>(new Obstacle(topY()), this.obstacles);
@@ -137,8 +135,7 @@ public class DoodleWorld implements IWorld {
 			newObstacles = this.obstacles;
 		}
 		
-=======
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
 		LoX<Star> newStars;
 		if (readyForNewStar()) {
 			newStars = new Cons<Star>(new Star(topY()), this.stars);
@@ -155,21 +152,16 @@ public class DoodleWorld implements IWorld {
 			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-<<<<<<< HEAD
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
+
+	
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
-=======
- 
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
-		} else if (kev.getKeyCode() == PApplet.RIGHT) {
-			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		}   else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.obstacles, this.stars, this.scrollAmount, this.score);
+
 		} else {
 			switch (kev.getKey()) {  // Use getKeyChar() to handle 's', 'o' etc.
 			case 's':
@@ -184,7 +176,7 @@ public class DoodleWorld implements IWorld {
 				break;
 			}
 
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms,this.obstacles, this.stars, this.scrollAmount, this.score);
 		}
 	}
 
