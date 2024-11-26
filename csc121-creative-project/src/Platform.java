@@ -10,26 +10,32 @@ public class Platform {
 	private Posn posn;
 	private int width;
 	private int height;
+<<<<<<< HEAD
 	private String color;
 	private static final int SIZE = 400;
+=======
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
 
 
-	public Platform(Posn posn, int width, int height, String color) {
+	public Platform(Posn posn, int width, int height) {
 		super();
 		this.posn = posn;
 		this.width = width;
 		this.height = height;
-		this.color = color;
 	}
 	
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
+<<<<<<< HEAD
 		Random rand = new Random();
 		int randomX = rand.nextInt(SIZE - 50);
 		this.posn = new Posn(randomX, ypos);
 		this.width = 75;
 		this.height = 10;
 		this.color = "blue";
+=======
+		this(new Posn(new Random().nextInt(400 - 50), ypos), 75, 10);
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
 	}
 	
 	/** produce a visual platform */ 
@@ -54,6 +60,7 @@ public class Platform {
 		return height;
 	}
 
+<<<<<<< HEAD
 
 
 
@@ -63,14 +70,16 @@ public class Platform {
 
 
 
+=======
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
 	@Override
 	public String toString() {
-		return "Platform [posn=" + posn + ", width=" + width + ", height=" + height + ", color=" + color + "]";
+		return "Platform [posn=" + posn + ", width=" + width + ", height=" + height + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, height, posn, width);
+		return Objects.hash(height, posn, width);
 	}
 
 	@Override
@@ -82,8 +91,7 @@ public class Platform {
 		if (getClass() != obj.getClass())
 			return false;
 		Platform other = (Platform) obj;
-		return Objects.equals(color, other.color) && height == other.height && Objects.equals(posn, other.posn)
-				&& width == other.width;
+		return height == other.height && Objects.equals(posn, other.posn) && width == other.width;
 	}
 
 
