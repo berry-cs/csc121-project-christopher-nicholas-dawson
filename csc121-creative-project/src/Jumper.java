@@ -17,7 +17,7 @@ public class Jumper {
 		this.vel = vel;
 		this.width = width;
 		this.height = height;
-<<<<<<< HEAD
+
 	}
 	
 	private static final int SIZE = 400;
@@ -33,9 +33,9 @@ public class Jumper {
 //		c.popMatrix();
 //		return c;
 //	}
-=======
-	} 
->>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
+
+
+
 	
 	public PApplet draw(PApplet c) {
 	    c.imageMode(PApplet.CENTER);
