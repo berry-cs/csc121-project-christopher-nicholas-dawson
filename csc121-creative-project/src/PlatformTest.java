@@ -4,8 +4,8 @@ import org.junit.jupiter.api.Test;
 
 class PlatformTest {
 
-	Platform pl1 = new Platform(new Posn(50, 50), 10, 4, "blue");
-	Platform pl2 = new Platform(new Posn(100, 100), 10, 4, "blue");
+	Platform pl1 = new Platform(new Posn(50, 50), 10, 4);
+	Platform pl2 = new Platform(new Posn(100, 100), 10, 4);
 	LoX<Platform> lop1 = new Cons<Platform>(pl1, new Cons<Platform>( pl2, new MT<Platform>())); 
 	LoX<Platform> MTlist = new MT<Platform>();
 

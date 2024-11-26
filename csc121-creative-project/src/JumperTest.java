@@ -9,7 +9,7 @@ class JumperTest {
 	Jumper j1 = new Jumper(new Posn(50,50), new Posn(0,0), 40, 40);
 	Jumper j2 = new Jumper(new Posn(50,70), new Posn(0,10), 40, 40);
 	Jumper j3 = new Jumper(new Posn(100,100), new Posn(5,-10), 40, 40);
-	Platform p1 = new Platform(new Posn(50,50), 10, 4, "blue");
+	Platform p1 = new Platform(new Posn(50,50), 10, 4);
 	LoX<Platform> pl1 = new Cons<Platform>(p1, new MT<Platform>());
 
 	Jumper j4 = new Jumper(new Posn(100,400), new Posn(5,7), 40, 40);  // at bottom of the world

@@ -19,7 +19,7 @@ public class Jumper {
 		this.vel = vel;
 		this.width = width;
 		this.height = height;
-	}
+	} 
 	
 	public PApplet draw(PApplet c) {
 	    c.imageMode(PApplet.CENTER);

@@ -6,11 +6,11 @@ import org.junit.jupiter.api.Test;
 
 class ObstacleTest {
 
-	Platform pl1 = new Platform(new Posn(50, 50), 10, 4, "blue");
-	Platform pl2 = new Platform(new Posn(100, 100), 10, 4, "blue");
+	Platform pl1 = new Platform(new Posn(50, 50), 10, 4);
+	Platform pl2 = new Platform(new Posn(100, 100), 10, 4);
 
-	Obstacle ob1 = new Obstacle(new Posn(50, 50), 10, 4, "red");
-	Obstacle ob2 = new Obstacle(new Posn(100, 100), 10, 4, "red");
+	Obstacle ob1 = new Obstacle(new Posn(50, 50), 10, 4);
+	Obstacle ob2 = new Obstacle(new Posn(100, 100), 10, 4);
 
 	LoX<Platform> plist1 = new Cons<Platform>(pl1,
 			new Cons<Platform>(pl2,

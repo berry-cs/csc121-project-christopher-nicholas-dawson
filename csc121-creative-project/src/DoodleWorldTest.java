@@ -9,17 +9,17 @@ class DoodleWorldTest {
 	Jumper j1 = new Jumper(new Posn(50,50), new Posn(0,0), 40, 40);
 	Jumper j2 = new Jumper(new Posn(50,70), new Posn(0,10), 40, 40);
 	Jumper j3 = new Jumper(new Posn(100,100), new Posn(5,-10), 40, 40);
-	Platform p1 = new Platform(new Posn(50,50), 10, 4, "blue");
+	Platform p1 = new Platform(new Posn(50,50), 10, 4);
 
-	Platform p2 = new Platform(new Posn(100, 400), 100, 20, "blue");
-	Platform p3 = new Platform(new Posn(400, 500), 80, 20, "blue");
+	Platform p2 = new Platform(new Posn(100, 400), 100, 20);
+	Platform p3 = new Platform(new Posn(400, 500), 80, 20);
 	LoX<Platform> pl1 = new Cons<Platform>(p1, new Cons<Platform>(p2, new Cons<Platform>(p3, new MT<Platform>())));
 
 
-	Obstacle ob1 = new Obstacle(new Posn(50,50), 10, 4, "red");
+	Obstacle ob1 = new Obstacle(new Posn(50,50), 10, 4);
 
-	Obstacle ob2 = new Obstacle(new Posn(100, 400), 100, 20, "red");
-	Obstacle ob3 = new Obstacle(new Posn(400, 500), 80, 20, "red");
+	Obstacle ob2 = new Obstacle(new Posn(100, 400), 100, 20);
+	Obstacle ob3 = new Obstacle(new Posn(400, 500), 80, 20);
 	LoX<Obstacle> obl1 = new Cons<Obstacle>(ob1, new Cons<Obstacle>(ob2, new Cons<Obstacle>(ob3, new MT<Obstacle>())));
 
 

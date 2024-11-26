@@ -135,11 +135,11 @@ public class DoodleWorld implements IWorld {
 			return new DoodleWorld(this.jumper.boost(), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
+ 
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
 		}   else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
 			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);

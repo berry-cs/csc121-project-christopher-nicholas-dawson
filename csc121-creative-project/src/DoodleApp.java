@@ -15,7 +15,7 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	public void settings() { 
 		this.size(400, 400);
 //		PImage img;
-//		img = loadImage("doodle_bg.png");
+//		img = loadImage("doodle_bg.png"); 
 //		background(img);
 	}
 	
