@@ -9,15 +9,20 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	private IWorld w;
 
 
+<<<<<<< HEAD
 	private static final int platwid = 75;
 	private static final int plahgt = 10;
 	private static final String placol = "blue";
     private static final int SIZE = 400;
+=======
+	public static final int platwid = 75;
+	public static final int plahgt = 10;
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
  
 	public void settings() { 
 		this.size(SIZE, SIZE);
 //		PImage img;
-//		img = loadImage("doodle_bg.png");
+//		img = loadImage("doodle_bg.png"); 
 //		background(img);
 	}
 	
@@ -27,18 +32,26 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 	public void setup() {		
 		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 17, 17),
 				new Cons<Platform> 
-		(new Platform(new Posn(200, 310), platwid, plahgt, placol),
+		(new Platform(new Posn(200, 310), platwid, plahgt),
 				new Cons<Platform> 
-		(new Platform(new Posn(250, 250), platwid, plahgt, placol), 
+		(new Platform(new Posn(250, 250), platwid, plahgt), 
 				new Cons<Platform>
-		(new Platform(new Posn(300, 150), platwid, plahgt, placol),
+		(new Platform(new Posn(300, 150), platwid, plahgt),
 				new Cons<Platform>
-		(new Platform(new Posn(200, 100), platwid, plahgt, placol),
+		(new Platform(new Posn(200, 100), platwid, plahgt),
 				new Cons<Platform>
+<<<<<<< HEAD
 		(new Platform(new Posn(200, 50), platwid, plahgt, placol), new MT<Platform>()))))),
 		new Cons<Obstacle>
 		(new Obstacle(new Posn(300, 300), 35, 35, "red"), new MT<Obstacle>()),new Cons<Star>
 		(new Star(new Posn(300, 300), 35, 35, "red"), new MT<Star>()),
+=======
+		(new Platform(new Posn(200, 50), platwid, plahgt), new MT<Platform>()))))),
+		new Cons<Star>
+		 (new Star(new Posn(350, 250), 35, 35), new MT<Star>()),
+		new Cons<Obstacle>
+		(new Obstacle(new Posn(300, 300), 35, 35), new MT<Obstacle>()),
+>>>>>>> aad9ddda4d2e1cb62e3d3eb51aca034323a3df62
 		0, new Score()); 
 	}
 
