@@ -1,4 +1,11 @@
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
+import java.util.Scanner;
+import java.io.*;
+
 import processing.core.PApplet;
 import processing.event.KeyEvent;
 
@@ -72,7 +79,7 @@ public class DoodleWorld implements IWorld {
 	public boolean readyForNewObstacle() {
 		return Math.random() < 0.005;
 	}
-	
+
 	public boolean readyForNewStar() {
 		return Math.random() < 0.005;
 	}
@@ -93,7 +100,7 @@ public class DoodleWorld implements IWorld {
 		if (this.jumper.atBottom(actualScrollAmount())) {
 			throw new RuntimeException("Game Over");
 		}
-		
+
 		if (this.jumper.isCollisionLoS(stars)) {
 			score.increment(200);
 		}
@@ -104,7 +111,7 @@ public class DoodleWorld implements IWorld {
 		} else {
 			newPlatforms = this.platforms;
 		}
-		
+
 		LoX<Star> newStars;
 		if (readyForNewStar()) {
 			newStars = new Cons<Star>(new Star(topY()), this.stars);
@@ -121,22 +128,39 @@ public class DoodleWorld implements IWorld {
 
 		return new DoodleWorld(newJumper, newPlatforms, newStars, newObstacles, this.scrollAmount + 80, this.score); 
 	}
-
+	
 	// jumper boosts if spacebar is pressed, jumper moves to the left with press of left arrow, right with press of right arrow
 	public DoodleWorld keyPressed(KeyEvent kev) {
 		if (kev.getKey() == ' ') {  // space
 			return new DoodleWorld(this.jumper.boost(), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
+
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-5, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
+			// Move jumper to the right by translating its position by 10 units in x
+			return new DoodleWorld(this.jumper.translateVel(new Posn(5, 0)), this.platforms, this.stars,this.obstacles, this.scrollAmount, this.score);
+		}   else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
 			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.stars, this.obstacles, this.scrollAmount, this.score);
 		} else {
-			return this;
+			switch (kev.getKey()) {  // Use getKeyChar() to handle 's', 'o' etc.
+			case 's':
+				System.out.println("Saving top scores...");
+				saveTopScores(null);  // Call method to save the top scores
+				break;
+			case 'o':
+				System.out.println("Loading top scores...");
+				loadTopScores();  // Call method to load the top scores
+				break;
+			default:
+				break;
+			}
+
+			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms,this.stars, this.obstacles, this.scrollAmount, this.score);
 		}
 	}
-	
+
 	/** produces the actual scroll amount in window pixels */
 	public int actualScrollAmount() {
 		return (int) (scrollAmount / 100.0f);
@@ -151,4 +175,92 @@ public class DoodleWorld implements IWorld {
 	public int bottomY() {
 		return 400 + actualScrollAmount();
 	}
+	
+	/**
+	 * Writes a single score to the given PrintWriter.
+	 */
+	private void writeScoreToFile(PrintWriter pw, int score) {
+		pw.println(score);
+	}
+
+	/**
+	 * Saves the top scores to a text file specified by the user.
+	 */
+	public void saveTopScores(List<Integer> topScores) {
+		try {
+			// Prompt the user for a file name
+			String filename = javax.swing.JOptionPane.showInputDialog("Please enter file name:");
+			filename = filename.trim();
+			if (filename.equals("")) {
+				javax.swing.JOptionPane.showMessageDialog(null, "Cannot save to a blank name");
+				return;
+			}
+			if (!filename.endsWith(".txt")) {
+				filename = filename + ".txt"; // Ensure the file ends with .txt
+			}
+
+			// Open the file for writing
+			PrintWriter pw = new PrintWriter(new File(filename));
+
+			// Use a helper method to write each score
+			for (int score : topScores) {
+				writeScoreToFile(pw, score);
+			}
+
+			pw.close(); // Close the writer
+			System.out.println("Scores saved successfully to: " + filename);
+		} catch (IOException exp) {
+			System.out.println("Problem saving scores: " + exp.getMessage());
+		}
+	}
+
+	/**
+	 * Loads the top scores from a text file specified by the user.
+	 */
+	public void loadTopScores() {
+		try {
+			// Prompt the user for a file name
+			String filename = javax.swing.JOptionPane.showInputDialog("Please enter file name:");
+			filename = filename.trim();
+
+			if (filename.equals("")) {
+				javax.swing.JOptionPane.showMessageDialog(null, "Cannot load from a blank name");
+				return;
+			}
+
+			// Ensure the filename ends with .txt
+			if (!filename.endsWith(".txt")) {
+				filename = filename + ".txt";
+			}
+
+			// Open the file for reading
+			Scanner sc = new Scanner(new File(filename));
+
+			// Clear the current top scores
+			List<Integer> topScores = new ArrayList<>();
+
+			// Read the scores from the file
+			while (sc.hasNextInt()) {
+				topScores.add(sc.nextInt());
+			}
+
+			// Optionally: Sort the scores (if needed)
+			// topScores.sort(Collections.reverseOrder());
+
+			// Close the scanner
+			sc.close();
+
+			// Optionally, you can display the loaded scores or assign them to a field
+			System.out.println("Top scores loaded successfully:");
+			for (int score : topScores) {
+				System.out.println(score);
+			}
+
+		} catch (IOException exp) {
+			System.out.println("Problem loading scores: " + exp.getMessage());
+		}
+	}
+
+	
+	
 }

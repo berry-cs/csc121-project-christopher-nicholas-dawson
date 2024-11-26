@@ -15,7 +15,7 @@ public class Star {
 		super();
 		this.posn = posn;
 		this.width = width;
-		this.height = height;
+		this.height = height; 
 	}
 
 public Star(int ypos) {
