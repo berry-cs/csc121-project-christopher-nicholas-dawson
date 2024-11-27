@@ -17,18 +17,11 @@ public class DoodleWorld implements IWorld {
 	private LoX<Platform> platforms;
 	private LoX<Star> stars;
 	private LoX<Obstacle> obstacles;
-	
+	 
 	private Score score;
 	private int scrollAmount;
-
 	
-	private boolean moveLeft = false;
-	private boolean moveRight = false;
-	private static final int SIZE = 400;
-	
-	
-
-
+	private static final int ScreenHgt = 600;
 
 	public DoodleWorld(Jumper jumper, LoX<Platform> platforms, LoX<Obstacle> obstacles,LoX<Star> stars, int scrollAmount, Score score) {
 		this.jumper = jumper;
@@ -63,9 +56,10 @@ public class DoodleWorld implements IWorld {
 				&& Objects.equals(platforms, other.platforms) && Objects.equals(score, other.score)
 				&& scrollAmount == other.scrollAmount && Objects.equals(stars, other.stars);
 	}
+	
 	// draws our doodleworld
 	public PApplet draw(PApplet c) {
-		c.background(255);  // clear the screen each time (color white)
+		c.background(255);  
 		c.translate(0, actualScrollAmount());
 		this.jumper.draw(c);
 		this.platforms.draws(c);
@@ -85,17 +79,14 @@ public class DoodleWorld implements IWorld {
 		return Math.random() < 0.02; // 2 percent chance a platform generates
 	}
 
-	// decide whether a new obstacle should be generated
+	/** decide whether a new obstacle should be generated */
 	public boolean readyForNewObstacle() {
-
 		return Math.random() < 0.005; // 0.5 percent chance an obstacle generates
-
-
 	}
 
+	/** decide whether a new star should be generated */
 	public boolean readyForNewStar() {
 		return Math.random() < 0.005;
-
 	}
 
 
@@ -104,7 +95,7 @@ public class DoodleWorld implements IWorld {
 		Jumper newJumper = this.jumper.move();
 
 		if (this.jumper.isCollisionLop(platforms)) {
-			score.increment(100); // increase score by 100 points
+			score.increment(100); 
 			newJumper = this.jumper.boost();
 		}
 
@@ -114,10 +105,6 @@ public class DoodleWorld implements IWorld {
 
 		if (this.jumper.atBottom(actualScrollAmount())) {
 			throw new RuntimeException("Game Over");
-		}
-
-		if (this.jumper.isCollisionLoS(stars)) {
-			score.increment(200);
 		}
 
 		LoX<Platform> newPlatforms;
@@ -134,16 +121,20 @@ public class DoodleWorld implements IWorld {
 		} else {
 			newObstacles = this.obstacles;
 		}
+	
 		
-
 		LoX<Star> newStars;
 		if (readyForNewStar()) {
 			newStars = new Cons<Star>(new Star(topY()), this.stars);
+		} else if (this.jumper.isCollisionLoS(stars)) {
+			newStars = this.jumper.removeStar(stars);
+			score.increment(200);
 		} else {
 			newStars = this.stars;
 		}
+		
 
-		return new DoodleWorld(newJumper, newPlatforms, newObstacles, newStars,this.scrollAmount + 80, this.score); 
+		return new DoodleWorld(newJumper, newPlatforms, newObstacles, newStars, this.scrollAmount + 80, this.score); 
 	}
 	
 	// jumper boosts if spacebar is pressed, jumper moves to the left with press of left arrow, right with press of right arrow
@@ -152,16 +143,10 @@ public class DoodleWorld implements IWorld {
 			return new DoodleWorld(this.jumper.boost(), this.platforms, this.obstacles, this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.LEFT) {
 			// Move jumper to the left by translating its position by -10 units in x
-
-	
-			return new DoodleWorld(this.jumper.translateVel(new Posn(-2, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
+			return new DoodleWorld(this.jumper.translate(new Posn(-10, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		} else if (kev.getKeyCode() == PApplet.RIGHT) {
 			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
-		}   else if (kev.getKeyCode() == PApplet.RIGHT) {
-			// Move jumper to the right by translating its position by 10 units in x
-			return new DoodleWorld(this.jumper.translateVel(new Posn(2, 0)), this.platforms, this.obstacles, this.stars, this.scrollAmount, this.score);
-
+			return new DoodleWorld(this.jumper.translate(new Posn(10, 0)), this.platforms, this.obstacles,this.stars, this.scrollAmount, this.score);
 		} else {
 			switch (kev.getKey()) {  // Use getKeyChar() to handle 's', 'o' etc.
 			case 's':
@@ -192,7 +177,7 @@ public class DoodleWorld implements IWorld {
 
 	/** produce the y coordinate of the bottom of the window */
 	public int bottomY() {
-		return SIZE + actualScrollAmount();
+		return ScreenHgt + actualScrollAmount();
 	}
 	
 	/**

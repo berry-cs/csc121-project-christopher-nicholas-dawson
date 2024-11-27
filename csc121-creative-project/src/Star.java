@@ -12,14 +12,6 @@ public class Star {
 	private int width;
 	private int height;
 
-	private String color;
-
-
-
-
-	
-
-
 	static PImage starImg = null;
 	private static final int SIZE = 400;
 
@@ -27,14 +19,24 @@ public class Star {
 		super();
 		this.posn = posn;
 		this.width = width;
-
 		this.height = height;
-		this.color = color;
-
 	}
 
+	public Star(int ypos) {
+		this(new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35);
+	}
 
-
+	public PApplet draw(PApplet c) {
+		if (starImg == null) {
+			starImg = c.loadImage("star.png");
+		}
+		c.imageMode(PApplet.CENTER);
+		float scaleWidth = starImg.width * 0.15f;
+		float scaleHeight = starImg.height * 0.15f;
+		c.image(starImg, (float)this.posn.getX(), (float)this.posn.getY(), scaleWidth, scaleHeight);
+		return c;
+	}
+	
 
 	// returns a posn
 	public Posn getPosn() {
@@ -51,48 +53,26 @@ public class Star {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(color, height, posn, width);
+		return Objects.hash(height, posn, width);
 	}
 
-
-
-public Star(int ypos) {
-	this(new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35);
-}
-
-public PApplet draw(PApplet c) {
-	if (starImg == null) {
-		starImg = c.loadImage("star.png");
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Star other = (Star) obj;
+		return height == other.height && Objects.equals(posn, other.posn) && width == other.width;
 	}
+
+	@Override
+	public String toString() {
+		return "Star [posn=" + posn + ", width=" + width + ", height=" + height + "]";
+	}
+
 	
-//	c.fill(255, 0, 0);
-//	c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
-	c.imageMode(PApplet.CENTER);
-	
-	float scaleWidth = starImg.width * 0.15f;
-	float scaleHeight = starImg.height * 0.15f;
-	c.image(starImg, (float)this.posn.getX(), (float)this.posn.getY(), scaleWidth, scaleHeight);
-	return c;
-}
-
-
-
-@Override
-public boolean equals(Object obj) {
-	if (this == obj)
-		return true;
-	if (obj == null)
-		return false;
-	if (getClass() != obj.getClass())
-		return false;
-	Star other = (Star) obj;
-	return height == other.height && Objects.equals(posn, other.posn) && width == other.width;
-}
-
-
-@Override
-public String toString() {
-	return "Star [posn=" + posn + ", width=" + width + ", height=" + height + "]";
-}
 
 }

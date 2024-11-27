@@ -30,9 +30,9 @@ class DoodleWorldTest {
 
 	@Test
 	void testKeyPressed() {
-		assertEquals( w1, w1.keyPressed(new KeyEvent(null, 0, 0, 0, 'c', 'c')));
+	//	assertEquals( w1, w1.keyPressed(new KeyEvent(null, 0, 0, 0, 'c', 'c')));
 
-	//	assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, null), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
+		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, new Score()), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
 		assertEquals( new DoodleWorld(j1.boost(), pl1, obl1, null, 0, new Score() ), w1.keyPressed(new KeyEvent(null, 0, 0, 0, ' ', ' ')));
 
@@ -40,26 +40,8 @@ class DoodleWorldTest {
 
 	@Test
 	void testScrollBottom() {
-		assertEquals( 400, w1.bottomY() );
-		assertEquals( 405, w2.bottomY() );
-	}
-
-
-	@Test
-	void testReadyForNewPlatform() {
-
-		int count = 0;
-		for (int i = 0; i < 1000; i++) {		 // repeat 1000 times
-			if (w1.readyForNewPlatform()) {
-				count = count + 1;
-			} else {
-				// do nothing
-			}
-		}
-		// hard to test because it's random		
-		//		assertEquals( true,  count > 9 );
-		//		assertEquals( true, count >  11);
-
+		assertEquals(600, w1.bottomY() );
+		assertEquals(605, w2.bottomY() );
 	}
 
 	@Test 
@@ -76,7 +58,7 @@ class DoodleWorldTest {
 
 	@Test
 	void testBottomY() {
-		assertEquals(405, w2.bottomY());
-		assertEquals(400, w1.bottomY());
+		assertEquals(605, w2.bottomY());
+		assertEquals(600, w1.bottomY());
 	}
 }

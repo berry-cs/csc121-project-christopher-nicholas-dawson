@@ -22,7 +22,7 @@ public interface LoX<T> {
 
 // represents an empty list in the LoX structure
 class MT<T> implements LoX<T> {
-	MT() {}
+	MT() {} 
 
 	// does nothing and returns the given canvas
 	public PApplet draws(PApplet c) {

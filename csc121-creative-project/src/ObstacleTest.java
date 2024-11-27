@@ -4,42 +4,51 @@ import org.junit.jupiter.api.Test;
 
 
 
-class ObstacleTest {
-
-	Platform pl1 = new Platform(new Posn(50, 50), 10, 4);
-	Platform pl2 = new Platform(new Posn(100, 100), 10, 4);
+class ObstacleTest { 
 
 	Obstacle ob1 = new Obstacle(new Posn(50, 50), 10, 4);
-	Obstacle ob2 = new Obstacle(new Posn(100, 100), 10, 4);
-
-	LoX<Platform> plist1 = new Cons<Platform>(pl1,
-			new Cons<Platform>(pl2,
-					new MT<Platform>()));
+	Obstacle ob2 = new Obstacle(new Posn(100, 100), 10, 4); 
 
 	LoX<Obstacle> oblist1 = new Cons<Obstacle>(ob1, 
 			new Cons<Obstacle>(ob2, 
 					new MT<Obstacle>()));
 
-	LoX<Platform> mtpl = new MT<Platform>();
-
 	LoX<Obstacle> mtob = new MT<Obstacle>();
 
 	@Test
 	void testGetFirst() {
-		assertEquals(pl1, plist1.getFirst());
 		assertEquals(ob1, oblist1.getFirst());
+		assertEquals(null, mtob.getFirst());
 	}
 
 	@Test
 	void testGetRest() {
-		assertEquals(new Cons<Platform>(pl2, new MT<Platform>()), plist1.getRest());
 		assertEquals(new Cons<Obstacle>(ob2, new MT<Obstacle>()), oblist1.getRest());
+		assertEquals(new MT<Obstacle>(), mtob.getRest());
 	}
 
 	@Test
 	void testIsEmpty() {
-		assertEquals(true, mtpl.isEmpty());
 		assertEquals(true, mtob.isEmpty());
+		assertEquals(false, oblist1.isEmpty());
+	}
+	
+	@Test
+	void testGetPosn() {
+		assertEquals(new Posn(50, 50), ob1.getPosn());
+		assertEquals(new Posn(100, 100), ob2.getPosn());
+	}
+	
+	@Test
+	void testGetWidth() {
+		assertEquals(10, ob1.getWidth());
+		assertEquals(10, ob2.getWidth());
+	}
+	
+	@Test
+	void testGetHeight() {
+		assertEquals(4, ob1.getHeight());
+		assertEquals(4, ob2.getHeight());
 	}
 
 }

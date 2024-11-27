@@ -10,7 +10,6 @@ public class Score {
 		this.points = 0;
 	}
 
-
 	// increments the score by a given amount
 	public void increment(int amount) {
 		this.points += amount;

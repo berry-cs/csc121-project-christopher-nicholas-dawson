@@ -9,6 +9,7 @@ public class Jumper {
 	private Posn vel;
 	private int width;
 	private int height;
+	
 	private static double GRAVITY = .45;
 
 	Jumper(Posn loc, Posn vel, int width, int height) {
@@ -17,25 +18,9 @@ public class Jumper {
 		this.vel = vel;
 		this.width = width;
 		this.height = height;
-
 	}
 	
-	private static final int SIZE = 400;
-
-//	// draws the jumper
-//	public PApplet draw(PApplet c) {
-//		c.imageMode(PApplet.CENTER);
-//		c.pushMatrix();
-//		c.scale(.25f);
-//		c.image(c.loadImage("Jumper.png"), (float)this.loc.getX(), (float)this.loc.getY());
-//		// c.fill(0, 0,255);
-//		// c.ellipse((int)this.loc.getX(), (int)this.loc.getY(), this.width, this.height);
-//		c.popMatrix();
-//		return c;
-//	}
-
-
-
+	private static final int ScreenHgt = 600;
 	
 	public PApplet draw(PApplet c) {
 	    c.imageMode(PApplet.CENTER);
@@ -46,27 +31,6 @@ public class Jumper {
 	    return c;
 	}
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(loc, vel);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Jumper other = (Jumper) obj;
-		return Objects.equals(loc, other.loc) && Objects.equals(vel, other.vel);
-	}
-
-	// returns a new jumper with its velocity adjusted by the given offset
-	public Jumper translateVel(Posn offset) {
-		return new Jumper(this.loc, new Posn(this.vel.getX() + offset.getX(), this.vel.getY() + offset.getY()), this.width, this.height);
-	}
 
 	// returns a new jumper with its position updated based on its velocity and simulates gravity
 	public Jumper move() {
@@ -77,21 +41,29 @@ public class Jumper {
 	public Jumper boost() {
 		return new Jumper(this.loc.translate(this.vel), this.vel.translate(new Posn(0, (GRAVITY - 9))).bound(12), this.width, this.height); 
 	} 
+	
+	// Method to translate (move) the jumper's position by a certain offset
+	public Jumper translate(Posn offset) {
+		return new Jumper(new Posn(this.loc.getX() + offset.getX(), this.loc.getY() + offset.getY()), this.vel, this.width, this.height);
+	}
+ 
+	// returns a new jumper with its velocity adjusted by the given offset
+	public Jumper translateVel(Posn offset) {
+		return new Jumper(this.loc, new Posn(this.vel.getX() + offset.getX(), this.vel.getY() + offset.getY()), this.width, this.height);
+	}
 
+	// Getter for position
+	public Posn getPosition() {
+		return this.loc;
+	}
 
-	// handles collision with a platform. If a collision occurs, resets velocity to zero
-	public Jumper collider(Platform platform) {
-		if(this.isCollisionPla(platform)) {
-
-			return new Jumper( this.loc, new Posn(0, 0),  this.width, this.height);
-		} else {
-			return new Jumper(this.loc.translate(this.vel),   this.vel.translate(new Posn(0, GRAVITY)).bound(12), this.width, this.height);
-		}
+	// determines if this jumper is at the bottom of the screen or not
+	public Boolean atBottom(int scrollamt) {
+		return this.loc.getY() >= ScreenHgt - scrollamt;
 	}
 
 	// checks if the jumper is colliding with an platform in the given list
 	public boolean isCollisionLop(LoX<Platform> platforms) {
-
 		if (platforms.isEmpty()) {
 			return false;
 		} else if (this.isCollisionPla(platforms.getFirst())) {
@@ -112,24 +84,6 @@ public class Jumper {
 		}
 	}
 	
-	// checks if the jumper is colliding with a specific obstacle
-	public boolean isCollisionOb(Obstacle obstacle) {
-		if (withinXRangeOb(obstacle) && withinYRangeOb(obstacle)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	// checks if the jumper is colliding with a specific obstacle
-	public boolean isCollisionSta(Star star) {
-		if (withinXRangeSta(star) && withinYRangeSta(star)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	// checks if the jumper's x-coordinate overlaps with a given platform
 	boolean withinXRangePla(Platform platform) {
 		return this.loc.getX() + this.width >= platform.getPosn().getX() 
@@ -140,46 +94,8 @@ public class Jumper {
 	boolean withinYRangePla(Platform platform) {
 		return this.loc.getY() + this.height >= platform.getPosn().getY() 
 				&& this.loc.getY() <= platform.getPosn().getY() + platform.getHeight();
- 
-	}
-
-	// checks if the jumper's x-coordinate overlaps with a given obstacle
-	boolean withinXRangeOb(Obstacle obstacle) {
-		return this.loc.getX() + this.width >= obstacle.getPosn().getX() 
-				&& this.loc.getX() <= obstacle.getPosn().getX() + obstacle.getWidth();
-	}
-
-	// checks if the jumper's y-coordinate overlaps with a given obstacle
-	boolean withinYRangeOb(Obstacle obstacle) {
-		return this.loc.getY() + this.height >= obstacle.getPosn().getY() 
-				&& this.loc.getY() <= obstacle.getPosn().getY() + obstacle.getHeight();
 	}
 	
-	// checks if the jumper's x-coordinate overlaps with a given obstacle
-	boolean withinXRangeSta(Star star) {
-		return this.loc.getX() + this.width >= star.getPosn().getX() 
-				&& this.loc.getX() <= star.getPosn().getX() + star.getWidth();
-	}
-
-	// checks if the jumper's y-coordinate overlaps with a given obstacle
-	boolean withinYRangeSta(Star star) {
-		return this.loc.getY() + this.height >= star.getPosn().getY() 
-				&& this.loc.getY() <= star.getPosn().getY() + star.getHeight();
-	}
-	
-	// checks if the jumper is colliding with any obstacle sin the given list
-	public boolean isCollisionLoS(LoX<Star> stars) {
-		if (stars.isEmpty()) {
-			return false;
-		} else if (this.isCollisionSta(stars.getFirst())) {
-			return true;
-		} else if (this.isCollisionLoS(stars.getRest())){
-			return true;
-		} else {
-			return false;
-		}
-	}
-
 	
 	// checks if the jumper is colliding with any obstacle sin the given list
 	public boolean isCollisionLoB(LoX<Obstacle> obstacles) {
@@ -193,29 +109,99 @@ public class Jumper {
 			return false;
 		}
 	}
+	 
+	// checks if the jumper is colliding with a specific obstacle
+	public boolean isCollisionOb(Obstacle obstacle) {
+		if (withinXRangeOb(obstacle) && withinYRangeOb(obstacle)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// checks if the jumper's x-coordinate overlaps with a given obstacle
+	boolean withinXRangeOb(Obstacle obstacle) {
+		return this.loc.getX() + this.width >= obstacle.getPosn().getX() 
+				&& this.loc.getX() <= obstacle.getPosn().getX() + obstacle.getWidth();
+	}
 
+	// checks if the jumper's y-coordinate overlaps with a given obstacle
+	boolean withinYRangeOb(Obstacle obstacle) {
+		return this.loc.getY() + this.height >= obstacle.getPosn().getY() 
+				&& this.loc.getY() <= obstacle.getPosn().getY() + obstacle.getHeight();
+	}
+	
+	
+	// checks if the jumper is colliding with any stars in the given list
+	public boolean isCollisionLoS(LoX<Star> stars) {
+		if (stars.isEmpty()) {
+			return false;
+		} else if (this.isCollisionSta(stars.getFirst())) {
+			return true;
+		} else if (this.isCollisionLoS(stars.getRest())){
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// checks if the jumper is colliding with a specific star
+	public boolean isCollisionSta(Star star) {
+		if (withinXRangeSta(star) && withinYRangeSta(star)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	// checks if the jumper's x-coordinate overlaps with a given star
+	boolean withinXRangeSta(Star star) {
+		return this.loc.getX() + this.width >= star.getPosn().getX() 
+				&& this.loc.getX() <= star.getPosn().getX() + star.getWidth();
+	}
 
-
-	// Method to translate (move) the jumper's position by a certain offset
-	public Jumper translate(Posn offset) {
-		return new Jumper(new Posn(this.loc.getX() + offset.getX(), this.loc.getY() + offset.getY()), this.vel, this.width, this.height);
+	// checks if the jumper's y-coordinate overlaps with a given star
+	boolean withinYRangeSta(Star star) {
+		return this.loc.getY() + this.height >= star.getPosn().getY() 
+				&& this.loc.getY() <= star.getPosn().getY() + star.getHeight();
+	}
+	
+	// removes a star from a list if it has collided with jumper
+	public LoX<Star> removeStar(LoX<Star> stars) {
+		if (stars.isEmpty()) {
+			return stars;
+		} else if (this.isCollisionSta(stars.getFirst())) {
+			return stars.getRest(); 
+		} else {
+			return new Cons<Star>(stars.getFirst(), removeStar(stars.getRest()));
+		}
+	}
+	
+	@Override
+	public int hashCode() {
+		return Objects.hash(height, loc, vel, width);
 	}
 
 
-	// Getter for position
-	public Posn getPosition() {
-		return this.loc;
-	}
-
-	// determines if this jumper is at the bottom of the screen or not
-	public Boolean atBottom(int scrollamt) {
-		return this.loc.getY() >= SIZE - scrollamt;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Jumper other = (Jumper) obj;
+		return height == other.height && Objects.equals(loc, other.loc) && Objects.equals(vel, other.vel)
+				&& width == other.width;
 	}
 
 	@Override
 	public String toString() {
 		return "Jumper [loc=" + loc + ", vel=" + vel + ", width=" + width + ", height=" + height + "]";
 	}
+	
+	
 
 
 }

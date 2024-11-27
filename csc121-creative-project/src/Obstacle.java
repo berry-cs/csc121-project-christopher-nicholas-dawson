@@ -5,22 +5,14 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 /** Represents a still obstacle*/
-
 public class Obstacle {
  
 	private Posn posn;
 	private int width;
 	private int height;
 
-	private String color;
-
 	private static final int SIZE = 400;
     private static PImage monsterImg = null;
-
-
-	
-	
-
 
 	public Obstacle(Posn posn, int width, int height) {
 		super();
@@ -29,21 +21,9 @@ public class Obstacle {
 		this.height = height;
 	}
 	
-	
+	 
 	public Obstacle(int ypos) {
-
-
-		
-
 		this(new Posn(new Random().nextInt(SIZE - 200), ypos), 35, 35);
-
-		/*
->>>>>>> 1657e40b5346bd133403df568e2228a90a1ec3ed
-		this.posn = (new Posn(randomX, ypos));
-		this.width = 35;
-		this.height = 35;
-		this.color = "red";
-		*/
 	}
 
 	// draws the obstacle
@@ -53,12 +33,10 @@ public class Obstacle {
 		}
 		
 	    c.imageMode(PApplet.CENTER);
-	  
+	   
 		float scaledWidth = monsterImg.width * 0.2f; 
 		float scaledHeight = monsterImg.height * 0.2f; 
 	    c.image(monsterImg, (float)this.posn.getX(), (float)this.posn.getY(), scaledWidth, scaledHeight);
-//		c.fill(255, 0, 0);
-//		c.rect((int)this.getPosn().getX(), (int)this.getPosn().getY(), this.getWidth(), this.getHeight(), 28);
 		return c;
 	}
 	

@@ -11,7 +11,7 @@ public class Posn {
 		this.x = x;
 		this.y = y;
 	}
-
+ 
 	/**
 	 * @return the x
 	 */

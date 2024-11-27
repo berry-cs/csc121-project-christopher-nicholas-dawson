@@ -12,7 +12,7 @@ public class DoodleProcessor {
 		System.out.println("Enter a file name:");
 		Scanner kb = new Scanner(System.in);
 		String filename = kb.nextLine();
-
+ 
 		System.out.println("Reading from: " + filename + "...");
 
 		try {

@@ -10,11 +10,8 @@ public class Platform {
 	private Posn posn;
 	private int width;
 	private int height;
-
-	private String color;
+ 
 	private static final int SIZE = 400;
-
-
 
 	public Platform(Posn posn, int width, int height) {
 		super();
@@ -25,11 +22,7 @@ public class Platform {
 	
 	/** construct a randomly placed platform at the given y in a random color */
 	public Platform(int ypos) {
-
-	
-
 		this(new Posn(new Random().nextInt(SIZE - 50), ypos), 75, 10);
-
 	}
 	
 	/** produce a visual platform */ 
@@ -53,17 +46,6 @@ public class Platform {
 	public int getHeight() {
 		return height;
 	}
-
-
-
-
-
-
-
-
-
-
-
 
 	@Override
 	public String toString() {
