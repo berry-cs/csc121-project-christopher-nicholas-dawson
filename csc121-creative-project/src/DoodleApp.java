@@ -8,22 +8,14 @@ public class DoodleApp extends PApplet {	// <----- 1. rename AppTemplate everywh
 
 	private IWorld w;
 
-
-
 	private static final int platwid = 75;
 	private static final int plahgt = 10;
     private static final int ScreenWid = 400;
     private static final int ScreenHgt = 600;
 
-
-
- 
 	public void settings() { 
 		this.size(ScreenWid, ScreenHgt);
 	}
-	
-
-
 
 	public void setup() {		
 		w = new DoodleWorld(new Jumper( new Posn(200, 300), new Posn(0,0), 17, 17),

@@ -43,6 +43,7 @@ public class DoodleProcessor {
 			}
 
 			// Close the files
+			kb.close();
 			pw.close();
 			sc.close();
 

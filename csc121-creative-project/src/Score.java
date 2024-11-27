@@ -1,15 +1,10 @@
 import java.io.PrintWriter;
 import java.util.Objects;
-import java.util.Scanner;
 
 import processing.core.PApplet;
 
 public class Score {
 	private int points;
-
-	public Score(Scanner sc) {
-		this.points = sc.nextInt();
-	}
 	
 	// initializes the score to 0
 	Score() {

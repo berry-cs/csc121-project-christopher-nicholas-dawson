@@ -131,10 +131,18 @@ public class DoodleWorld implements IWorld {
 		}
 
 		if (this.jumper.isCollisionLoB(obstacles)) {
+			System.out.println("Saving score...");
+			this.scores.add(new Score(score.getPoints())); 
+			saveTopScores();
+			System.out.println("Score Saved");
 			throw new RuntimeException("Game Over");
 		}
 
 		if (this.jumper.atBottom(actualScrollAmount())) {
+			System.out.println("Saving score...");
+			this.scores.add(new Score(score.getPoints())); 
+			saveTopScores();
+			System.out.println("Score Saved");
 			throw new RuntimeException("Game Over");
 		}
 
@@ -182,15 +190,9 @@ public class DoodleWorld implements IWorld {
 			switch (kev.getKey()) {  // Use getKeyChar() to handle 's', 'o' etc.
 			case 's':
 				System.out.println("Saving score...");
+				this.scores.add(new Score(score.getPoints())); 
 				saveTopScores();
 				System.out.println("Score Saved");
-				break;
-			case 'o': 
-				System.out.println("Loading top scores...");
-				loadTopScores(); 
-				
-				break;
-			default:
 				break;
 			}
 
@@ -201,7 +203,7 @@ public class DoodleWorld implements IWorld {
 	// saves the current score in the window to a text file
 	public void saveTopScores() {
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter("scores.txt", true));
+			PrintWriter pw = new PrintWriter(new FileWriter("output.txt", true));
 
 			for (Score s : this.scores) {
 				s.writeToFile(pw);
@@ -212,109 +214,5 @@ public class DoodleWorld implements IWorld {
 			System.out.println("Problem saving score: " + exp.getMessage());
 		}
 	}
-
-	// outputs the top scores to a output text file
-	public void loadTopScores() {
-		try {
-			Scanner sc = new Scanner(new File("top-scores.txt"));
-			this.scores.clear();
-			
-			while(sc.hasNextInt()) {
-				
-			}
-			
-			sc.close();
-		} catch (IOException exp) {
-			System.out.println("Problem loading top scores: " + exp.getMessage());
-		}
-	}
-
-
-	//	/**
-	//	 * Writes a single score to the given PrintWriter.
-	//	 */
-	//	private void writeScoreToFile(PrintWriter pw, int score) {
-	//		pw.println(score);
-	//	}
-	//
-	//	/**
-	//	 * Saves the top scores to a text file specified by the user.
-	//	 */
-	//	public void saveTopScores() {
-	//		try {
-	//			// Prompt the user for a file name
-	//			String filename = javax.swing.JOptionPane.showInputDialog("Please enter file name:");
-	//			filename = filename.trim();
-	//			if (filename.equals("")) {
-	//				javax.swing.JOptionPane.showMessageDialog(null, "Cannot save to a blank name");
-	//				return;
-	//			}
-	//			if (!filename.endsWith(".txt")) {
-	//				filename = filename + ".txt"; // Ensure the file ends with .txt
-	//			}
-	//
-	//			// Open the file for writing
-	//			PrintWriter pw = new PrintWriter(new File(filename));
-	//
-	//			// Use a helper method to write each score
-	//			for (int score : this.topScores) {
-	//				writeScoreToFile(pw, score);
-	//			}
-	//
-	//			pw.close(); // Close the writer
-	//			System.out.println("Scores saved successfully to: " + filename);
-	//		} catch (IOException exp) {
-	//			System.out.println("Problem saving scores: " + exp.getMessage());
-	//		}
-	//	}
-	//
-	//	/**
-	//	 * Loads the top scores from a text file specified by the user.
-	//	 */
-	//	public void loadTopScores() {
-	//		try {
-	//			// Prompt the user for a file name
-	//			String filename = javax.swing.JOptionPane.showInputDialog("Please enter file name:");
-	//			filename = filename.trim();
-	//
-	//			if (filename.equals("")) {
-	//				javax.swing.JOptionPane.showMessageDialog(null, "Cannot load from a blank name");
-	//				return;
-	//			}
-	//
-	//			// Ensure the filename ends with .txt
-	//			if (!filename.endsWith(".txt")) {
-	//				filename = filename + ".txt";
-	//			}
-	//
-	//			// Open the file for reading
-	//			Scanner sc = new Scanner(new File(filename));
-	//
-	//			// Clear the current top scores
-	//			List<Integer> topScores = new ArrayList<>();
-	//
-	//			// Read the scores from the file
-	//			while (sc.hasNextInt()) {
-	//				topScores.add(sc.nextInt());
-	//			}
-	//
-	//			// Optionally: Sort the scores (if needed)
-	//			// topScores.sort(Collections.reverseOrder());
-	//
-	//			// Close the scanner
-	//			sc.close();
-	//
-	//			// Optionally, you can display the loaded scores or assign them to a field
-	//			System.out.println("Top scores loaded successfully:");
-	//			for (int score : topScores) {
-	//				System.out.println(score);
-	//			}
-	//
-	//		} catch (IOException exp) {
-	//			System.out.println("Problem loading scores: " + exp.getMessage());
-	//		}
-	//	}
-
-
 
 }
