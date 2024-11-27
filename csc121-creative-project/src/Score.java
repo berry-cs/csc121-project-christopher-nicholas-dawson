@@ -1,10 +1,16 @@
+import java.io.PrintWriter;
 import java.util.Objects;
+import java.util.Scanner;
 
 import processing.core.PApplet;
 
 public class Score {
 	private int points;
 
+	public Score(Scanner sc) {
+		this.points = sc.nextInt();
+	}
+	
 	// initializes the score to 0
 	Score() {
 		this.points = 0;
@@ -13,6 +19,11 @@ public class Score {
 	// increments the score by a given amount
 	public void increment(int amount) {
 		this.points += amount;
+	}
+	
+	// prints the int of this score to the given output object
+	public void writeToFile(PrintWriter pw) {
+		pw.println(this.points);
 	}
 
 	// draws the current score on the given canvas at the top-right corner
